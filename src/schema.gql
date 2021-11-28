@@ -1,0 +1,29 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Demo {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  demo(id: Int!): Demo!
+}
+
+type Mutation {
+  createDemo(createDemoInput: CreateDemoInput!): Demo!
+  updateDemo(updateDemoInput: UpdateDemoInput!): Demo!
+  removeDemo(id: Int!): Demo!
+}
+
+input CreateDemoInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateDemoInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
