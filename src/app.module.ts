@@ -8,6 +8,17 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DemoModule } from './demo/demo.module';
+import { LocationModule } from './location/location.module';
+import { UserModule } from './user/user.module';
+import { ReviewModule } from './review/review.module';
+import { PetModule } from './pet/pet.module';
+import { LikeModule } from './like/like.module';
+import { MessageModule } from './message/message.module';
+import { ConversationModule } from './conversation/conversation.module';
+import { MatchModule } from './match/match.module';
+import { TypeModule } from './type/type.module';
+import { BreedModule } from './breed/breed.module';
+import { BreedCharacteristicModule } from './breed-characteristic/breed-characteristic.module';
 
 @Module({
   imports: [
@@ -25,6 +36,17 @@ import { DemoModule } from './demo/demo.module';
       synchronize: true,
     }),
     DemoModule,
+    LocationModule,
+    UserModule,
+    ReviewModule,
+    PetModule,
+    LikeModule,
+    MessageModule,
+    ConversationModule,
+    MatchModule,
+    TypeModule,
+    BreedModule,
+    BreedCharacteristicModule,
   ],
   controllers: [AppController],
   providers: [AppService],
