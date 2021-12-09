@@ -1,7 +1,15 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 export class BreedCharacteristic {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field((type) => Int)
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Field()
+  label: string;
+
+  @Field({ nullable: true })
+  description: string;
 }

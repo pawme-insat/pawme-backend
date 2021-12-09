@@ -1,7 +1,20 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { PrimaryGeneratedColumn } from 'typeorm';
+import { User } from '../../user/entities/user.entity';
+import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
 export class Review {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field((type) => Int)
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Field()
+  description: string;
+
+  @Field((type) => User)
+  user: User;
+
+  @Field((type) => Pet)
+  pet: Pet;
 }
