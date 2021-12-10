@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
@@ -9,8 +9,12 @@ export class Like {
   id: number;
 
   @Field((type) => Pet)
+  @OneToOne(() => Pet)
+  @JoinColumn()
   pet: Pet;
 
   @Field((type) => Pet)
-  liked_pet: Pet;
+  @OneToOne(() => Pet)
+  @JoinColumn()
+  likedPet: Pet;
 }

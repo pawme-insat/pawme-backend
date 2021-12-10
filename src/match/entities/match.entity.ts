@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 import { Like } from '../../like/entities/like.entity';
 
@@ -10,8 +10,12 @@ export class Match extends TimeStampEntity {
   id: number;
 
   @Field((type) => Like)
-  like_1: Like;
+  @OneToOne(() => Like)
+  @JoinColumn()
+  like1: Like;
 
   @Field((type) => Like)
-  like_2: Like;
+  @OneToOne(() => Like)
+  @JoinColumn()
+  like2: Like;
 }

@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IsDate, IsEmail } from 'class-validator';
 import { Location } from '../../location/entities/location.entity';
 import { Pet } from '../../pet/entities/pet.entity';
@@ -28,8 +28,10 @@ export class User {
   birth_date: Date;
 
   @Field((type) => Location)
+  @ManyToOne(() => Location)
   location: Location;
 
   @Field((type) => [Pet])
+  @OneToMany(() => Pet, (Pet) => Pet.user)
   pets: Pet[];
 }

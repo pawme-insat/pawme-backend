@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Breed } from '../../breed/entities/breed.entity';
 import { OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
 export class Type {
@@ -14,4 +15,8 @@ export class Type {
   @Field((type) => [Breed])
   @OneToMany(() => Breed, (Breed) => Breed.type)
   breeds: Breed[];
+
+  @Field((type) => [Pet])
+  @OneToMany(() => Pet, (Pet) => Pet.type)
+  pets: Pet[];
 }
