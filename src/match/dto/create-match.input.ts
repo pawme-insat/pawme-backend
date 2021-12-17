@@ -1,16 +1,16 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { Like } from '../../like/entities/like.entity';
+import { Field, InputType } from '@nestjs/graphql';
+import { LikePet } from '../../like-pet/entities/like-pet.entity';
 import { JoinColumn, OneToOne } from 'typeorm';
 
 @InputType()
 export class CreateMatchInput {
-  @Field((type) => Like)
-  @OneToOne(() => Like)
+  @Field((type) => LikePet)
+  @OneToOne(() => LikePet)
   @JoinColumn()
-  like1: Like;
+  like1: LikePet;
 
-  @Field((type) => Like)
-  @OneToOne(() => Like)
+  @Field((type) => LikePet)
+  @OneToOne(() => LikePet)
   @JoinColumn()
-  like2: Like;
+  like2: LikePet;
 }

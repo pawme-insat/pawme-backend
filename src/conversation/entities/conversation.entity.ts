@@ -1,6 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
-  Entity,
   JoinColumn,
   OneToMany,
   OneToOne,
@@ -10,7 +9,7 @@ import { Match } from '../../match/entities/match.entity';
 import { Message } from '../../message/entities/message.entity';
 
 @ObjectType()
-@Entity()
+// @Entity()
 export class Conversation {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

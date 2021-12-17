@@ -1,6 +1,6 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { Field, InputType, Int } from '@nestjs/graphql';
 import { IsDate, IsEmail } from 'class-validator';
-import { Location } from '../../location/entities/location.entity';
+import { Address } from '../../address/entities/address.entity';
 import { ManyToOne, OneToMany } from 'typeorm';
 import { Pet } from '../../pet/entities/pet.entity';
 
@@ -23,9 +23,9 @@ export class CreateUserInput {
   @IsDate()
   birth_date: Date;
 
-  @Field((type) => Location)
-  @ManyToOne(() => Location)
-  location: Location;
+  @Field((type) => Address)
+  @ManyToOne(() => Address)
+  address: Address;
 
   @Field((type) => [Pet])
   @OneToMany(() => Pet, (Pet) => Pet.user)

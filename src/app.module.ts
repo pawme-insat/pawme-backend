@@ -7,19 +7,17 @@ import { validate } from 'env.validation';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DemoModule } from './demo/demo.module';
-import { LocationModule } from './location/location.module';
+import { AddressModule } from './address/address.module';
 import { UserModule } from './user/user.module';
 import { ReviewModule } from './review/review.module';
 import { PetModule } from './pet/pet.module';
-import { LikeModule } from './like/like.module';
+import { LikePetModule } from './like-pet/like-pet.module';
 import { MessageModule } from './message/message.module';
 import { ConversationModule } from './conversation/conversation.module';
 import { MatchModule } from './match/match.module';
-import { TypeModule } from './type/type.module';
+import { PetTypeModule } from './pet-type/pet-type.module';
 import { BreedModule } from './breed/breed.module';
 import { BreedCharacteristicModule } from './breed-characteristic/breed-characteristic.module';
-import { Generic.ServiceService } from './generics/generic.service/generic.service.service';
 import { GenericService } from './generics/generic/generic.service';
 
 @Module({
@@ -37,20 +35,19 @@ import { GenericService } from './generics/generic/generic.service';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    DemoModule,
-    LocationModule,
+    AddressModule,
     UserModule,
     ReviewModule,
     PetModule,
-    LikeModule,
+    LikePetModule,
     MessageModule,
     ConversationModule,
     MatchModule,
-    TypeModule,
+    PetTypeModule,
     BreedModule,
     BreedCharacteristicModule,
   ],
   controllers: [AppController],
-  providers: [AppService, Generic.ServiceService, GenericService],
+  providers: [AppService, GenericService],
 })
 export class AppModule {}

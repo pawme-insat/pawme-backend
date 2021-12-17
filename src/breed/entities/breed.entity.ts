@@ -7,7 +7,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Type } from '../../type/entities/type.entity';
+import { Type } from '../../pet-type/entities/pet-type.entity';
 
 @ObjectType()
 @Entity()

@@ -1,5 +1,5 @@
-import { InputType, Int, Field, registerEnumType } from '@nestjs/graphql';
-import { Type } from '../../type/entities/type.entity';
+import { Field, InputType, Int, registerEnumType } from '@nestjs/graphql';
+import { PetType } from '../../pet-type/entities/pet-type.entity';
 import { ManyToOne } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 
@@ -25,9 +25,9 @@ export class CreatePetInput {
   @Field()
   aboutMe: string;
 
-  @Field((type) => Type)
-  @ManyToOne(() => Type, (Type) => Type.pets)
-  type: Type;
+  @Field((type) => PetType)
+  @ManyToOne(() => PetType, (PetType) => PetType.pets)
+  type: PetType;
 
   @Field((type) => User)
   @ManyToOne(() => User, (User) => User.pets)

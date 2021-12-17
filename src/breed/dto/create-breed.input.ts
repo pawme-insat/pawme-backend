@@ -1,7 +1,7 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { BreedCharacteristic } from '../../breed-characteristic/entities/breed-characteristic.entity';
 import { JoinTable, ManyToMany, ManyToOne } from 'typeorm';
-import { Type } from '../../type/entities/type.entity';
+import { Type } from '../../pet-type/entities/pet-type.entity';
 
 @InputType()
 export class CreateBreedInput {
