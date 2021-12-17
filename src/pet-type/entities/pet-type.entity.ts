@@ -1,6 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Breed } from '../../breed/entities/breed.entity';
-import { Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
@@ -11,6 +11,7 @@ export class PetType {
   id: number;
 
   @Field()
+  @Column()
   name: string;
 
   @Field((type) => [Breed])

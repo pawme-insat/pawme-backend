@@ -1,22 +1,25 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { BreedCharacteristic } from '../../breed-characteristic/entities/breed-characteristic.entity';
 import {
+  Column,
   Entity,
   JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Type } from '../../pet-type/entities/pet-type.entity';
+import { PetType } from '../../pet-type/entities/pet-type.entity';
 
 @ObjectType()
 @Entity()
 export class Breed {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
+  @Column()
   id: number;
 
   @Field()
+  @Column()
   name: string;
 
   @Field((type) => [BreedCharacteristic])
@@ -24,7 +27,7 @@ export class Breed {
   @JoinTable()
   breed_characteristics: BreedCharacteristic[];
 
-  @Field((type) => Type)
-  @ManyToOne(() => Type, (e) => e.breeds)
-  type: Type;
+  @Field((type) => PetType)
+  @ManyToOne(() => PetType, (e) => e.breeds)
+  type: PetType;
 }

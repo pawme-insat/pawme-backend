@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { Pet } from '../../pet/entities/pet.entity';
 
@@ -11,6 +11,7 @@ export class Review {
   id: number;
 
   @Field()
+  @Column()
   description: string;
 
   @Field((type) => User)

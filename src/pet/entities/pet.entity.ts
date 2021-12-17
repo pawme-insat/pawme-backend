@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { PetType } from '../../pet-type/entities/pet-type.entity';
 import { User } from '../../user/entities/user.entity';
@@ -20,15 +20,19 @@ export class Pet {
   id: number;
 
   @Field()
+  @Column()
   name: string;
 
   @Field((type) => Int)
+  @Column()
   age: number;
 
   @Field((type) => Sexe)
+  @Column()
   sexe: Sexe;
 
   @Field()
+  @Column()
   aboutMe: string;
 
   @Field((type) => PetType)

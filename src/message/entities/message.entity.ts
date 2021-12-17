@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
+  Column,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -28,6 +29,7 @@ export class Message extends TimeStampEntity {
   sender: Pet;
 
   @Field()
+  @Column()
   content: string;
 
   @Field((type) => Conversation)
