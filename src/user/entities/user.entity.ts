@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, HideField, Int, ObjectType } from '@nestjs/graphql';
 import { ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IsDate, IsEmail } from 'class-validator';
 import { Location } from '../../location/entities/location.entity';
@@ -22,6 +22,9 @@ export class User {
   @Field()
   @IsEmail()
   email: string;
+
+  @HideField()
+  password: string;
 
   @Field((newType) => Date)
   @IsDate()
