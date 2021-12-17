@@ -3,6 +3,7 @@ import { LocationService } from './location.service';
 import { LocationResolver } from './location.resolver';
 
 @Module({
-  providers: [LocationResolver, LocationService]
+  providers: [LocationResolver, LocationService],
+  exports: [LocationService],
 })
 export class LocationModule {}

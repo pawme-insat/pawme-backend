@@ -5,16 +5,16 @@ import { Repository, UpdateResult } from 'typeorm';
 export class GenericService<Entity> {
   constructor(private repository: Repository<Entity>) {}
 
-  findAll(options): Promise<Entity[]> {
+  public findAll(options): Promise<Entity[]> {
     return this.repository.find();
   }
-  create(addEntity): Promise<Entity> {
+  public create(addEntity): Promise<Entity> {
     return this.repository.save(addEntity);
   }
-  findOne(id: number): Promise<Entity> {
+  public findOne(id: number): Promise<Entity> {
     return this.repository.findOne(id);
   }
-  async update(id: number, updateEntity): Promise<Entity> {
+  public async update(id: number, updateEntity): Promise<Entity> {
     const newEntity = await this.repository.preload({
       id,
       ...updateEntity,
