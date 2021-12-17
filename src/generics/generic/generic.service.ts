@@ -8,21 +8,21 @@ export class GenericService<Entity> {
   findAll(options): Promise<Entity[]> {
     return this.repository.find();
   }
-  create(addTodo): Promise<Entity> {
-    return this.repository.save(addTodo);
+  create(addEntity): Promise<Entity> {
+    return this.repository.save(addEntity);
   }
   findOne(id: number): Promise<Entity> {
     return this.repository.findOne(id);
   }
-  async update(id: number, updateTodo): Promise<Entity> {
-    const newTodo = await this.repository.preload({
+  async update(id: number, updateEntity): Promise<Entity> {
+    const newEntity = await this.repository.preload({
       id,
-      ...updateTodo,
+      ...updateEntity,
     });
-    if (newTodo) {
-      return this.repository.save(newTodo);
+    if (newEntity) {
+      return this.repository.save(newEntity);
     }
-    throw new NotFoundException('Todo innexistant');
+    throw new NotFoundException('Entity inexistant');
   }
   remove(id: number): Promise<UpdateResult> {
     return this.repository.softDelete(id);

@@ -1,26 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { CreateConversationInput } from './dto/create-conversation.input';
-import { UpdateConversationInput } from './dto/update-conversation.input';
+import { GenericService } from '../generics/generic/generic.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class ConversationService {
-  create(createConversationInput: CreateConversationInput) {
-    return 'This action adds a new conversation';
-  }
-
-  findAll() {
-    return `This action returns all conversation`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} conversation`;
-  }
-
-  update(id: number, updateConversationInput: UpdateConversationInput) {
-    return `This action updates a #${id} conversation`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} conversation`;
+export class ConversationService extends GenericService<ConversationService> {
+  constructor(
+    @InjectRepository(ConversationService)
+    private readonly myRepository: Repository<ConversationService>,
+  ) {
+    super(myRepository);
   }
 }

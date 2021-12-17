@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMessageInput } from './dto/create-message.input';
-import { UpdateMessageInput } from './dto/update-message.input';
+import { Message } from './entities/message.entity';
+import { GenericService } from '../generics/generic/generic.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
-export class MessageService {
-  create(createMessageInput: CreateMessageInput) {
-    return 'This action adds a new message';
-  }
-
-  findAll() {
-    return `This action returns all message`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} message`;
-  }
-
-  update(id: number, updateMessageInput: UpdateMessageInput) {
-    return `This action updates a #${id} message`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} message`;
+export class MessageService extends GenericService<Message> {
+  constructor(
+    @InjectRepository(Message)
+    private readonly myRepository: Repository<Message>,
+  ) {
+    super(myRepository);
   }
 }
