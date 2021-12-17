@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Type } from '../../type/entities/type.entity';
 import { User } from '../../user/entities/user.entity';
@@ -13,6 +13,7 @@ registerEnumType(Sexe, {
 });
 
 @ObjectType()
+@Entity()
 export class Pet {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

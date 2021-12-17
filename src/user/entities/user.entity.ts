@@ -1,10 +1,11 @@
 import { Field, HideField, Int, ObjectType } from '@nestjs/graphql';
-import { ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IsDate, IsEmail } from 'class-validator';
 import { Location } from '../../location/entities/location.entity';
 import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
+@Entity()
 export class User {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

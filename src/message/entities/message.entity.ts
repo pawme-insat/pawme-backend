@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
+  Entity,
   JoinColumn,
   ManyToOne,
   OneToOne,
@@ -10,6 +11,7 @@ import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 import { Conversation } from '../../conversation/entities/conversation.entity';
 
 @ObjectType()
+@Entity()
 export class Message extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

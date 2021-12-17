@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { BreedCharacteristic } from '../../breed-characteristic/entities/breed-characteristic.entity';
 import {
+  Entity,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -9,6 +10,7 @@ import {
 import { Type } from '../../type/entities/type.entity';
 
 @ObjectType()
+@Entity()
 export class Breed {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

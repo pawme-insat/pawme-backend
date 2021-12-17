@@ -81,8 +81,6 @@ type Like {
 
 type Match {
   id: Int!
-  like1: Like!
-  like2: Like!
 }
 
 type Conversation {

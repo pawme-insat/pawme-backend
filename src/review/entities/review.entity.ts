@@ -1,9 +1,10 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
+@Entity()
 export class Review {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
