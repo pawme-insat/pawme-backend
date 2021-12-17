@@ -3,6 +3,8 @@ import { IsDate, IsEmail } from 'class-validator';
 import { Location } from '../../location/entities/location.entity';
 import { ManyToOne, OneToMany } from 'typeorm';
 import { Pet } from '../../pet/entities/pet.entity';
+import { CreatePetInput } from 'src/pet/dto/create-pet.input';
+import { CreateLocationInput } from 'src/location/dto/create-location.input';
 
 @InputType()
 export class CreateUserInput {
@@ -23,11 +25,9 @@ export class CreateUserInput {
   @IsDate()
   birth_date: Date;
 
-  @Field((type) => Location)
-  @ManyToOne(() => Location)
-  location: Location;
+  @Field((type) => CreateLocationInput)
+  location: CreateLocationInput;
 
-  @Field((type) => [Pet])
-  @OneToMany(() => Pet, (Pet) => Pet.user)
+  @Field((type) => [CreatePetInput])
   pets: Pet[];
 }

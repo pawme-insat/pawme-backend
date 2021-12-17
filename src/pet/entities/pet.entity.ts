@@ -1,4 +1,10 @@
-import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
+import {
+  Field,
+  InputType,
+  Int,
+  ObjectType,
+  registerEnumType,
+} from '@nestjs/graphql';
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Type } from '../../type/entities/type.entity';
@@ -13,6 +19,7 @@ registerEnumType(Sexe, {
 });
 
 @ObjectType()
+@InputType()
 @Entity()
 export class Pet {
   @Field((type) => Int)

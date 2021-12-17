@@ -7,8 +7,6 @@ import { validate } from 'env.validation';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DemoModule } from './demo/demo.module';
-import { LocationModule } from './location/location.module';
 import { UserModule } from './user/user.module';
 import { ReviewModule } from './review/review.module';
 import { PetModule } from './pet/pet.module';
@@ -19,8 +17,8 @@ import { MatchModule } from './match/match.module';
 import { TypeModule } from './type/type.module';
 import { BreedModule } from './breed/breed.module';
 import { BreedCharacteristicModule } from './breed-characteristic/breed-characteristic.module';
-import { Generic.ServiceService } from './generics/generic.service/generic.service.service';
 import { GenericService } from './generics/generic/generic.service';
+import { LocationModule } from './location/location.module';
 
 @Module({
   imports: [
@@ -37,7 +35,6 @@ import { GenericService } from './generics/generic/generic.service';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    DemoModule,
     LocationModule,
     UserModule,
     ReviewModule,
@@ -51,6 +48,6 @@ import { GenericService } from './generics/generic/generic.service';
     BreedCharacteristicModule,
   ],
   controllers: [AppController],
-  providers: [AppService, Generic.ServiceService, GenericService],
+  providers: [AppService],
 })
 export class AppModule {}

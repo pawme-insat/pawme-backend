@@ -26,10 +26,8 @@ export class CreatePetInput {
   aboutMe: string;
 
   @Field((type) => Type)
-  @ManyToOne(() => Type, (Type) => Type.pets)
   type: Type;
 
   @Field((type) => User)
-  @ManyToOne(() => User, (User) => User.pets)
   user: User;
 }
