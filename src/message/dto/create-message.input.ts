@@ -1,24 +1,18 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { Pet } from '../../pet/entities/pet.entity';
-import { JoinColumn, ManyToOne, OneToOne } from 'typeorm';
-import { Conversation } from '../../conversation/entities/conversation.entity';
+import { Field, InputType } from '@nestjs/graphql';
+import { CreatePetInput } from '../../pet/dto/create-pet.input';
+import { CreateConversationInput } from '../../conversation/dto/create-conversation.input';
 
 @InputType()
 export class CreateMessageInput {
-  @Field((type) => Pet)
-  @OneToOne((type) => Pet)
-  @JoinColumn()
-  receiver: Pet;
+  @Field((type) => CreatePetInput)
+  receiver: CreatePetInput;
 
-  @Field((type) => Pet)
-  @OneToOne((type) => Pet)
-  @JoinColumn()
-  sender: Pet;
+  @Field((type) => CreatePetInput)
+  sender: CreatePetInput;
 
   @Field()
   content: string;
 
-  @Field((type) => Conversation)
-  @ManyToOne(() => Conversation, (Conversation) => Conversation.messages)
-  conversation: Conversation;
+  @Field((type) => CreateConversationInput)
+  conversation: CreateConversationInput;
 }

@@ -1,7 +1,6 @@
 import { Field, InputType, Int, registerEnumType } from '@nestjs/graphql';
-import { PetType } from '../../pet-type/entities/pet-type.entity';
-import { ManyToOne } from 'typeorm';
-import { User } from '../../user/entities/user.entity';
+import { CreatePetTypeInput } from '../../pet-type/dto/create-pet-type.input';
+import { CreateUserInput } from '../../user/dto/create-user.input';
 
 enum Sexe {
   'Masculin' = 'M',
@@ -25,11 +24,9 @@ export class CreatePetInput {
   @Field()
   aboutMe: string;
 
-  @Field((type) => PetType)
-  @ManyToOne(() => PetType, (PetType) => PetType.pets)
-  type: PetType;
+  @Field((type) => CreatePetTypeInput)
+  type: CreatePetTypeInput;
 
-  @Field((type) => User)
-  @ManyToOne(() => User, (User) => User.pets)
-  user: User;
+  @Field((type) => CreateUserInput)
+  user: CreateUserInput;
 }

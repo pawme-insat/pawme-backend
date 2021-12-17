@@ -1,18 +1,15 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Breed } from '../../breed/entities/breed.entity';
-import { OneToMany } from 'typeorm';
-import { Pet } from '../../pet/entities/pet.entity';
+import { CreateBreedInput } from '../../breed/dto/create-breed.input';
+import { CreatePetInput } from '../../pet/dto/create-pet.input';
 
 @InputType()
 export class CreatePetTypeInput {
   @Field()
   name: string;
 
-  @Field((type) => [Breed])
-  @OneToMany(() => Breed, (Breed) => Breed.type)
-  breeds: Breed[];
+  @Field((type) => [CreateBreedInput])
+  breeds: CreateBreedInput[];
 
-  @Field((type) => [Pet])
-  @OneToMany(() => Pet, (Pet) => Pet.type)
-  pets: Pet[];
+  @Field((type) => [CreatePetInput])
+  pets: CreatePetInput[];
 }

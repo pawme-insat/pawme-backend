@@ -1,17 +1,12 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { Match } from '../../match/entities/match.entity';
-import { JoinColumn, OneToMany, OneToOne } from 'typeorm';
-import { Message } from '../../message/entities/message.entity';
+import { Field, InputType } from '@nestjs/graphql';
+import { CreateMatchInput } from '../../match/dto/create-match.input';
+import { CreateMessageInput } from '../../message/dto/create-message.input';
 
 @InputType()
 export class CreateConversationInput {
-  @Field((type) => Match)
-  @OneToOne(() => Match)
-  @JoinColumn()
-  match: Match;
+  @Field((type) => CreateMatchInput)
+  match: CreateMatchInput;
 
-  @Field((type) => [Message])
-  @OneToMany(() => Message, (Message) => Message.conversation)
-  @JoinColumn()
-  messages: Message[];
+  @Field((type) => [CreateMessageInput])
+  messages: CreateMessageInput[];
 }

@@ -1,16 +1,11 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Pet } from '../../pet/entities/pet.entity';
-import { JoinColumn, OneToOne } from 'typeorm';
+import { CreatePetInput } from '../../pet/dto/create-pet.input';
 
 @InputType()
 export class CreateLikePetInput {
-  @Field((type) => Pet)
-  @OneToOne(() => Pet)
-  @JoinColumn()
-  pet: Pet;
+  @Field((type) => CreatePetInput)
+  pet: CreatePetInput;
 
-  @Field((type) => Pet)
-  @OneToOne(() => Pet)
-  @JoinColumn()
-  likedPet: Pet;
+  @Field((type) => CreatePetInput)
+  likedPet: CreatePetInput;
 }

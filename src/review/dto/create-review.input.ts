@@ -1,18 +1,15 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { User } from '../../user/entities/user.entity';
+import { Field, InputType } from '@nestjs/graphql';
 import { ManyToOne } from 'typeorm';
-import { Pet } from '../../pet/entities/pet.entity';
+import { CreateUserInput } from '../../user/dto/create-user.input';
+import { CreatePetInput } from '../../pet/dto/create-pet.input';
 
 @InputType()
 export class CreateReviewInput {
   @Field()
   description: string;
 
-  @Field((type) => User)
-  @ManyToOne(() => User)
-  user: User;
-
-  @Field((type) => Pet)
-  @ManyToOne(() => Pet)
-  pet: Pet;
+  @Field((type) => CreateUserInput)
+  @ManyToOne(() => CreateUserInput)
+  @Field((type) => CreatePetInput)
+  pet: CreatePetInput;
 }

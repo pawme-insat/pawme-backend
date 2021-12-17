@@ -1,19 +1,16 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { BreedCharacteristic } from '../../breed-characteristic/entities/breed-characteristic.entity';
-import { JoinTable, ManyToMany, ManyToOne } from 'typeorm';
-import { Type } from '../../pet-type/entities/pet-type.entity';
+import { PetType } from '../../pet-type/entities/pet-type.entity';
+import { CreateBreedCharacteristicInput } from '../../breed-characteristic/dto/create-breed-characteristic.input';
+import { CreatePetTypeInput } from '../../pet-type/dto/create-pet-type.input';
 
 @InputType()
 export class CreateBreedInput {
   @Field()
   name: string;
 
-  @Field((type) => [BreedCharacteristic])
-  @ManyToMany(() => BreedCharacteristic)
-  @JoinTable()
-  breed_characteristics: BreedCharacteristic[];
+  @Field((type) => [CreateBreedCharacteristicInput])
+  breed_characteristics: CreateBreedCharacteristicInput[];
 
-  @Field((type) => Type)
-  @ManyToOne(() => Type, (e) => e.breeds)
-  type: Type;
+  @Field((type) => CreatePetTypeInput)
+  type: PetType;
 }
