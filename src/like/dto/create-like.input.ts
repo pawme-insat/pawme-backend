@@ -1,7 +1,16 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
+import { Pet } from '../../pet/entities/pet.entity';
+import { JoinColumn, OneToOne } from 'typeorm';
 
 @InputType()
 export class CreateLikeInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field((type) => Pet)
+  @OneToOne(() => Pet)
+  @JoinColumn()
+  pet: Pet;
+
+  @Field((type) => Pet)
+  @OneToOne(() => Pet)
+  @JoinColumn()
+  likedPet: Pet;
 }

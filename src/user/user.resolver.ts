@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
+import { LocationService } from '../location/location.service';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -10,12 +11,15 @@ export class UserResolver {
 
   @Mutation(() => User)
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+    /*if (!LocationService.findOne(createUserInput.location.id)) {
+      LocationService.create(createUserInput.location);
+    }*/
     return this.userService.create(createUserInput);
   }
 
   @Query(() => [User], { name: 'user' })
   findAll() {
-    return this.userService.findAll();
+    return this.userService.findAll({});
   }
 
   @Query(() => User, { name: 'user' })

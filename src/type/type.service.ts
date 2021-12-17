@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTypeInput } from './dto/create-type.input';
-import { UpdateTypeInput } from './dto/update-type.input';
+import { GenericService } from '../generics/generic/generic.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Type } from './entities/type.entity';
 
 @Injectable()
-export class TypeService {
-  create(createTypeInput: CreateTypeInput) {
-    return 'This action adds a new type';
-  }
-
-  findAll() {
-    return `This action returns all type`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} type`;
-  }
-
-  update(id: number, updateTypeInput: UpdateTypeInput) {
-    return `This action updates a #${id} type`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} type`;
+export class TypeService extends GenericService<Type> {
+  constructor(
+    @InjectRepository(Type)
+    private readonly myRepository: Repository<Type>,
+  ) {
+    super(myRepository);
   }
 }

@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMatchInput } from './dto/create-match.input';
-import { UpdateMatchInput } from './dto/update-match.input';
+import { GenericService } from '../generics/generic/generic.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Match } from './entities/match.entity';
 
 @Injectable()
-export class MatchService {
-  create(createMatchInput: CreateMatchInput) {
-    return 'This action adds a new match';
-  }
-
-  findAll() {
-    return `This action returns all match`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} match`;
-  }
-
-  update(id: number, updateMatchInput: UpdateMatchInput) {
-    return `This action updates a #${id} match`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} match`;
+export class MatchService extends GenericService<Match> {
+  constructor(
+    @InjectRepository(Match)
+    private readonly myRepository: Repository<Match>,
+  ) {
+    super(myRepository);
   }
 }

@@ -1,26 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateReviewInput } from './dto/create-review.input';
-import { UpdateReviewInput } from './dto/update-review.input';
+import { GenericService } from '../generics/generic/generic.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Review } from './entities/review.entity';
 
 @Injectable()
-export class ReviewService {
-  create(createReviewInput: CreateReviewInput) {
-    return 'This action adds a new review';
-  }
-
-  findAll() {
-    return `This action returns all review`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} review`;
-  }
-
-  update(id: number, updateReviewInput: UpdateReviewInput) {
-    return `This action updates a #${id} review`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} review`;
+export class ReviewService extends GenericService<Review> {
+  constructor(
+    @InjectRepository(Review)
+    private readonly myRepository: Repository<Review>,
+  ) {
+    super(myRepository);
   }
 }
