@@ -32,6 +32,7 @@ type Type {
   id: Int!
   name: String!
   breeds: [Breed!]!
+  pets: [Pet!]!
 }
 
 type Pet {
@@ -41,6 +42,7 @@ type Pet {
   sexe: Sexe!
   aboutMe: String!
   type: Type!
+  user: User!
 }
 
 enum Sexe {
@@ -74,7 +76,19 @@ type Review {
 type Like {
   id: Int!
   pet: Pet!
-  liked_pet: Pet!
+  likedPet: Pet!
+}
+
+type Match {
+  id: Int!
+  like1: Like!
+  like2: Like!
+}
+
+type Conversation {
+  id: Int!
+  match: Match!
+  messages: [Message!]!
 }
 
 type Message {
@@ -82,18 +96,7 @@ type Message {
   receiver: Pet!
   sender: Pet!
   content: String!
-}
-
-type Match {
-  id: Int!
-  like_1: Like!
-  like_2: Like!
-}
-
-type Conversation {
-  id: Int!
-  match: Match!
-  messages: [Message!]!
+  conversation: Conversation!
 }
 
 type Query {
