@@ -15,7 +15,7 @@ export class PetResolver {
 
   @Query(() => [Pet], { name: 'pet' })
   findAll() {
-    return this.petService.findAll();
+    return this.petService.findAll({});
   }
 
   @Query(() => Pet, { name: 'pet' })

@@ -15,7 +15,7 @@ export class LikeResolver {
 
   @Query(() => [Like], { name: 'like' })
   findAll() {
-    return this.likeService.findAll();
+    return this.likeService.findAll({});
   }
 
   @Query(() => Like, { name: 'like' })

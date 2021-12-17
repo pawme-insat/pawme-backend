@@ -15,7 +15,7 @@ export class ReviewResolver {
 
   @Query(() => [Review], { name: 'review' })
   findAll() {
-    return this.reviewService.findAll();
+    return this.reviewService.findAll({});
   }
 
   @Query(() => Review, { name: 'review' })

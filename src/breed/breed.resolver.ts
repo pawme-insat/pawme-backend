@@ -15,7 +15,7 @@ export class BreedResolver {
 
   @Query(() => [Breed], { name: 'breed' })
   findAll() {
-    return this.breedService.findAll();
+    return this.breedService.findAll({});
   }
 
   @Query(() => Breed, { name: 'breed' })

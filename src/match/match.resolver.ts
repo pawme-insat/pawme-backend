@@ -15,7 +15,7 @@ export class MatchResolver {
 
   @Query(() => [Match], { name: 'match' })
   findAll() {
-    return this.matchService.findAll();
+    return this.matchService.findAll({});
   }
 
   @Query(() => Match, { name: 'match' })

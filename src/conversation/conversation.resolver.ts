@@ -15,7 +15,7 @@ export class ConversationResolver {
 
   @Query(() => [Conversation], { name: 'conversation' })
   findAll() {
-    return this.conversationService.findAll();
+    return this.conversationService.findAll({});
   }
 
   @Query(() => Conversation, { name: 'conversation' })

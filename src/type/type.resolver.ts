@@ -15,7 +15,7 @@ export class TypeResolver {
 
   @Query(() => [Type], { name: 'type' })
   findAll() {
-    return this.typeService.findAll();
+    return this.typeService.findAll({});
   }
 
   @Query(() => Type, { name: 'type' })

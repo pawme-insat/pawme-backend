@@ -15,7 +15,7 @@ export class MessageResolver {
 
   @Query(() => [Message], { name: 'message' })
   findAll() {
-    return this.messageService.findAll();
+    return this.messageService.findAll({});
   }
 
   @Query(() => Message, { name: 'message' })
