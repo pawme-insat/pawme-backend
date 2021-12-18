@@ -7,7 +7,7 @@ enum Sexe {
   'Feminin' = 'F',
 }
 registerEnumType(Sexe, {
-  name: 'Sexe',
+  name: 'SexeEnum',
 });
 
 @InputType()

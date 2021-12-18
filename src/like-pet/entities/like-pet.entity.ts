@@ -13,7 +13,6 @@ import { Pet } from '../../pet/entities/pet.entity';
 export class LikePet {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
-  @Column()
   id: number;
 
   @Field((type) => Pet)

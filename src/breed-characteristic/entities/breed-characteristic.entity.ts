@@ -6,7 +6,6 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class BreedCharacteristic {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
-  @Column()
   id: number;
 
   @Field()

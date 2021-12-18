@@ -15,7 +15,6 @@ import { PetType } from '../../pet-type/entities/pet-type.entity';
 export class Breed {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
-  @Column()
   id: number;
 
   @Field()
