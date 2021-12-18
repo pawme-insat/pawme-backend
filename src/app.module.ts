@@ -18,7 +18,6 @@ import { MatchModule } from './match/match.module';
 import { PetTypeModule } from './pet-type/pet-type.module';
 import { BreedModule } from './breed/breed.module';
 import { BreedCharacteristicModule } from './breed-characteristic/breed-characteristic.module';
-import { GenericService } from './generics/generic/generic.service';
 
 @Module({
   imports: [
@@ -48,6 +47,6 @@ import { GenericService } from './generics/generic/generic.service';
     BreedCharacteristicModule,
   ],
   controllers: [AppController],
-  providers: [AppService, GenericService],
+  providers: [AppService],
 })
 export class AppModule {}
