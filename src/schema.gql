@@ -96,7 +96,7 @@ type Message {
 
 type Query {
   Address(id: Int!): Address!
-  user(id: Int!): User!
+  user(id: Int!): User
   review(id: Int!): Review!
   pet(id: Int!): Pet!
   like(id: Int!): LikePet!
@@ -166,7 +166,21 @@ input CreateUserInput {
   email: String!
   birth_date: DateTime!
   address: CreateAddressInput!
-  pets: [CreatePetInput!]!
+}
+
+input UpdateUserInput {
+  first_name: Float
+  last_name: String
+  phone: Int
+  email: String
+  birth_date: DateTime
+  address: CreateAddressInput
+  id: Int!
+}
+
+input CreateReviewInput {
+  description: String!
+  pet: CreatePetInput!
 }
 
 input CreatePetInput {
@@ -198,22 +212,6 @@ input CreateBreedInput {
 input CreateBreedCharacteristicInput {
   label: String!
   description: String
-}
-
-input UpdateUserInput {
-  first_name: Float
-  last_name: String
-  phone: Int
-  email: String
-  birth_date: DateTime
-  address: CreateAddressInput
-  pets: [CreatePetInput!]
-  id: Int!
-}
-
-input CreateReviewInput {
-  description: String!
-  pet: CreatePetInput!
 }
 
 input UpdateReviewInput {

@@ -10,5 +10,6 @@ import { Address } from '../address/entities/address.entity';
 @Module({
   providers: [UserResolver, UserService],
   imports: [AddressModule, TypeOrmModule.forFeature([User, Address])],
+  exports: [UserService],
 })
 export class UserModule {}

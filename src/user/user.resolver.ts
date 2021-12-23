@@ -10,18 +10,15 @@ export class UserResolver {
 
   @Mutation(() => User)
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    /*if (!LocationService.findOne(createUserInput.address.id)) {
-      LocationService.create(createUserInput.address);
-    }*/
     return this.userService.create(createUserInput);
   }
 
-  @Query(() => [User], { name: 'user' })
-  findAll() {
+  @Query(() => [User], { name: 'user', nullable: true })
+  async findAll() {
     return this.userService.findAll({});
   }
 
-  @Query(() => User, { name: 'user' })
+  @Query(() => User, { name: 'user', nullable: true})
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.userService.findOne(id);
   }
