@@ -19,7 +19,7 @@ export class User {
 
   @Field()
   @Column()
-  first_name: number;
+  first_name: string;
 
   @Field()
   @Column()
@@ -34,7 +34,7 @@ export class User {
   @Column()
   email: string;
 
-  @HideField()
+  @Field()
   @Column()
   password: string;
 
@@ -44,10 +44,10 @@ export class User {
   birth_date: Date;
 
   @Field((type) => Address)
-  @ManyToOne(() => Address)
+  @ManyToOne(() => Address, { cascade: true })
   address: Address;
 
   @Field((type) => [Pet])
-  @OneToMany(() => Pet, (Pet) => Pet.user)
+  @OneToMany(() => Pet, (Pet) => Pet.user, { cascade: true })
   pets: Pet[];
 }

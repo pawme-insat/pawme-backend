@@ -47,10 +47,11 @@ enum Sexe {
 
 type User {
   id: Int!
-  first_name: Float!
+  first_name: String!
   last_name: String!
   phone: Int!
   email: String!
+  password: String!
   birth_date: DateTime!
   address: Address!
   pets: [Pet!]!
@@ -160,21 +161,23 @@ input UpdateAddressInput {
 }
 
 input CreateUserInput {
-  first_name: Float!
+  first_name: String!
   last_name: String!
   phone: Int!
   email: String!
   birth_date: DateTime!
   address: CreateAddressInput!
+  password: String!
 }
 
 input UpdateUserInput {
-  first_name: Float
+  first_name: String
   last_name: String
   phone: Int
   email: String
   birth_date: DateTime
   address: CreateAddressInput
+  password: String
   id: Int!
 }
 

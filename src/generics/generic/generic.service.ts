@@ -8,11 +8,15 @@ export class GenericService<Entity> {
   public findAll(options): Promise<Entity[]> {
     return this.repository.find();
   }
-  public create(addEntity): Promise<Entity> {
-    return this.repository.save(addEntity);
+  public async create(addEntity): Promise<Entity> {
+    const entity = await this.repository.save(addEntity);
+    console.log(entity);
+    return entity;
   }
-  public findOne(id: number): Promise<Entity> {
-    return this.repository.findOne(id);
+  public async findOne(id: number): Promise<Entity> {
+    const a = await this.repository.findOne(id);
+    console.log(a);
+    return a;
   }
   public async update(id: number, updateEntity): Promise<Entity> {
     const newEntity = await this.repository.preload({
