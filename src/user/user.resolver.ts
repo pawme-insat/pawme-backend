@@ -18,7 +18,7 @@ export class UserResolver {
     return this.userService.findAll({});
   }
 
-  @Query(() => User, { name: 'user', nullable: true})
+  @Query(() => User, { name: 'user', nullable: true })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.userService.findOne(id);
   }
