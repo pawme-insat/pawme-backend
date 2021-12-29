@@ -13,7 +13,7 @@ export class ReviewResolver {
     return this.reviewService.create(createReviewInput);
   }
 
-  @Query(() => [Review], { name: 'review' })
+  @Query(() => [Review], { name: 'reviews' })
   findAll() {
     return this.reviewService.findAll({});
   }

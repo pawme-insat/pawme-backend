@@ -13,7 +13,7 @@ export class ConversationResolver {
     return this.conversationService.create(createConversationInput);
   }
 
-  @Query(() => [Conversation], { name: 'conversation' })
+  @Query(() => [Conversation], { name: 'conversations' })
   findAll() {
     return this.conversationService.findAll({});
   }
@@ -24,8 +24,14 @@ export class ConversationResolver {
   }
 
   @Mutation(() => Conversation)
-  updateConversation(@Args('updateConversationInput') updateConversationInput: UpdateConversationInput) {
-    return this.conversationService.update(updateConversationInput.id, updateConversationInput);
+  updateConversation(
+    @Args('updateConversationInput')
+    updateConversationInput: UpdateConversationInput,
+  ) {
+    return this.conversationService.update(
+      updateConversationInput.id,
+      updateConversationInput,
+    );
   }
 
   @Mutation(() => Conversation)
