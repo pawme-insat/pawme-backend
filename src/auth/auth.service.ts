@@ -9,6 +9,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { PayloadDto } from './dto/payload.dto';
 import { SignInResponseDto } from './dto/signin-response.dto';
+import { ValidateEmailResponseDto } from './dto/validate-email-response.dto';
 
 @Injectable()
 export class AuthService {
@@ -16,6 +17,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
+
   async register(registerDto: RegisterDto): Promise<User> {
     /*
                 Recherche le User
@@ -63,5 +65,12 @@ export class AuthService {
         };
       }
     }
+  }
+
+  async validateEmail(email: string): Promise<ValidateEmailResponseDto> {
+    const user = await this.userService.findUserByEmail(email);
+    return {
+      user_exists: !!user,
+    };
   }
 }
