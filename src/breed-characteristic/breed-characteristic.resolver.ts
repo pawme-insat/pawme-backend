@@ -10,22 +10,30 @@ export class BreedCharacteristicResolver {
 
   @Mutation(() => BreedCharacteristic)
   createBreedCharacteristic(@Args('createBreedCharacteristicInput') createBreedCharacteristicInput: CreateBreedCharacteristicInput) {
-    return this.breedCharacteristicService.create(createBreedCharacteristicInput);
+    return this.breedCharacteristicService.create(
+      createBreedCharacteristicInput,
+    );
   }
 
-  @Query(() => [BreedCharacteristic], { name: 'breedCharacteristic' })
+  @Query(() => [BreedCharacteristic], { name: 'breed-Characteristics' })
   findAll() {
     return this.breedCharacteristicService.findAll({});
   }
 
-  @Query(() => BreedCharacteristic, { name: 'breedCharacteristic' })
+  @Query(() => BreedCharacteristic, { name: 'breed-Characteristic' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.breedCharacteristicService.findOne(id);
   }
 
   @Mutation(() => BreedCharacteristic)
-  updateBreedCharacteristic(@Args('updateBreedCharacteristicInput') updateBreedCharacteristicInput: UpdateBreedCharacteristicInput) {
-    return this.breedCharacteristicService.update(updateBreedCharacteristicInput.id, updateBreedCharacteristicInput);
+  updateBreedCharacteristic(
+    @Args('updateBreedCharacteristicInput')
+    updateBreedCharacteristicInput: UpdateBreedCharacteristicInput,
+  ) {
+    return this.breedCharacteristicService.update(
+      updateBreedCharacteristicInput.id,
+      updateBreedCharacteristicInput,
+    );
   }
 
   @Mutation(() => BreedCharacteristic)

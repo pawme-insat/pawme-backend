@@ -13,7 +13,7 @@ export class MatchResolver {
     return this.matchService.create(createMatchInput);
   }
 
-  @Query(() => [Match], { name: 'match' })
+  @Query(() => [Match], { name: 'matches' })
   findAll() {
     return this.matchService.findAll({});
   }

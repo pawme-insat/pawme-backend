@@ -7,7 +7,6 @@ import { User } from '../user/entities/user.entity';
 import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { AuthController } from './auth.controller';
 import { AuthResolver } from './auth.resolver';
 
 dotenv.config();

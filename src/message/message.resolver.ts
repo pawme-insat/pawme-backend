@@ -13,7 +13,7 @@ export class MessageResolver {
     return this.messageService.create(createMessageInput);
   }
 
-  @Query(() => [Message], { name: 'message' })
+  @Query(() => [Message], { name: 'messages' })
   findAll() {
     return this.messageService.findAll({});
   }
