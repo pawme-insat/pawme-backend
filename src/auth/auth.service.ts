@@ -35,6 +35,7 @@ export class AuthService {
       registerDto.password = hashedPassword;
       const newUser = await this.userService.create(registerDto);
       delete newUser.password;
+      newUser.password = 'hidden';
       return newUser;
     }
   }

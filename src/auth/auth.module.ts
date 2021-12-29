@@ -8,10 +8,11 @@ import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
+import { AuthResolver } from './auth.resolver';
 
 dotenv.config();
 @Module({
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, AuthResolver],
   imports: [
     TypeOrmModule.forFeature([User]),
     UserModule,
@@ -23,6 +24,5 @@ dotenv.config();
       },
     }),
   ],
-  controllers: [AuthController],
 })
 export class AuthModule {}

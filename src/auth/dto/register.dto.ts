@@ -1,5 +1,5 @@
 import { IsDate, IsEmail, IsNotEmpty } from 'class-validator';
-import {Field, InputType, Int} from '@nestjs/graphql';
+import { Field, InputType, Int } from '@nestjs/graphql';
 import { CreateAddressInput } from '../../address/dto/create-address.input';
 
 @InputType()

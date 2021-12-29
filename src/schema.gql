@@ -95,6 +95,10 @@ type Message {
   conversation: Conversation!
 }
 
+type SignInResponseDto {
+  token: String!
+}
+
 type Query {
   Address(id: Int!): Address!
   user(id: Int!): User
@@ -107,6 +111,12 @@ type Query {
   type(id: Int!): PetType!
   breed(id: Int!): Breed!
   breedCharacteristic(id: Int!): BreedCharacteristic!
+  login(credentials: SignInDto!): SignInResponseDto!
+}
+
+input SignInDto {
+  email: String!
+  password: String!
 }
 
 type Mutation {
@@ -143,6 +153,7 @@ type Mutation {
   createBreedCharacteristic(createBreedCharacteristicInput: CreateBreedCharacteristicInput!): BreedCharacteristic!
   updateBreedCharacteristic(updateBreedCharacteristicInput: UpdateBreedCharacteristicInput!): BreedCharacteristic!
   removeBreedCharacteristic(id: Int!): BreedCharacteristic!
+  SignUp(registerDto: RegisterDto!): User!
 }
 
 input CreateAddressInput {
@@ -299,4 +310,14 @@ input UpdateBreedCharacteristicInput {
   label: String
   description: String
   id: Int!
+}
+
+input RegisterDto {
+  first_name: String!
+  last_name: String!
+  phone: Int!
+  email: String!
+  birth_date: DateTime!
+  address: CreateAddressInput!
+  password: String!
 }
