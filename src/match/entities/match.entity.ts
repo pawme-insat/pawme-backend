@@ -4,7 +4,7 @@ import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 import { LikePet } from '../../like-pet/entities/like-pet.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'matches' })
 export class Match extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
