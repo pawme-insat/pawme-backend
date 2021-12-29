@@ -10,7 +10,7 @@ import { Match } from '../../match/entities/match.entity';
 import { Message } from '../../message/entities/message.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'conversations' })
 export class Conversation {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

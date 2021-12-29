@@ -4,7 +4,7 @@ import { User } from '../../user/entities/user.entity';
 import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'reviews' })
 export class Review {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

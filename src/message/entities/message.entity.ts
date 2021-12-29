@@ -12,7 +12,7 @@ import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 import { Conversation } from '../../conversation/entities/conversation.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'messages' })
 export class Message extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

@@ -13,7 +13,7 @@ export class BreedResolver {
     return this.breedService.create(createBreedInput);
   }
 
-  @Query(() => [Breed], { name: 'breed' })
+  @Query(() => [Breed], { name: 'breeds' })
   findAll() {
     return this.breedService.findAll({});
   }

@@ -13,7 +13,7 @@ registerEnumType(Sexe, {
 });
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'pets' })
 export class Pet {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
