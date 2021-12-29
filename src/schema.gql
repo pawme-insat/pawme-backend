@@ -100,16 +100,27 @@ type SignInResponseDto {
 }
 
 type Query {
+  Addresses: [Address!]!
   Address(id: Int!): Address!
+  users: [User!]
   user(id: Int!): User
+  reviews: [Review!]!
   review(id: Int!): Review!
+  pets: [Pet!]!
   pet(id: Int!): Pet!
-  like(id: Int!): LikePet!
+  petLikes: [LikePet!]!
+  petLike(id: Int!): LikePet!
+  messages: [Message!]!
   message(id: Int!): Message!
+  conversations: [Conversation!]!
   conversation(id: Int!): Conversation!
+  matches: [Match!]!
   match(id: Int!): Match!
-  type(id: Int!): PetType!
+  petTypes: [PetType!]!
+  petType(id: Int!): PetType!
+  breeds: [Breed!]!
   breed(id: Int!): Breed!
+  breedCharacteristics: [BreedCharacteristic!]!
   breedCharacteristic(id: Int!): BreedCharacteristic!
   login(credentials: SignInDto!): SignInResponseDto!
 }

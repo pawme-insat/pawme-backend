@@ -13,12 +13,12 @@ export class LikePetResolver {
     return this.likeService.create(createLikeInput);
   }
 
-  @Query(() => [LikePet], { name: 'pet-likes' })
+  @Query(() => [LikePet], { name: 'petLikes' })
   findAll() {
     return this.likeService.findAll({});
   }
 
-  @Query(() => LikePet, { name: 'pet-like' })
+  @Query(() => LikePet, { name: 'petLike' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.likeService.findOne(id);
   }

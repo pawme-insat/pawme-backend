@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { BreedCharacteristicService } from './breed-characteristic.service';
 import { BreedCharacteristic } from './entities/breed-characteristic.entity';
 import { CreateBreedCharacteristicInput } from './dto/create-breed-characteristic.input';
@@ -6,21 +6,26 @@ import { UpdateBreedCharacteristicInput } from './dto/update-breed-characteristi
 
 @Resolver(() => BreedCharacteristic)
 export class BreedCharacteristicResolver {
-  constructor(private readonly breedCharacteristicService: BreedCharacteristicService) {}
+  constructor(
+    private readonly breedCharacteristicService: BreedCharacteristicService,
+  ) {}
 
   @Mutation(() => BreedCharacteristic)
-  createBreedCharacteristic(@Args('createBreedCharacteristicInput') createBreedCharacteristicInput: CreateBreedCharacteristicInput) {
+  createBreedCharacteristic(
+    @Args('createBreedCharacteristicInput')
+    createBreedCharacteristicInput: CreateBreedCharacteristicInput,
+  ) {
     return this.breedCharacteristicService.create(
       createBreedCharacteristicInput,
     );
   }
 
-  @Query(() => [BreedCharacteristic], { name: 'breed-Characteristics' })
+  @Query(() => [BreedCharacteristic], { name: 'breedCharacteristics' })
   findAll() {
     return this.breedCharacteristicService.findAll({});
   }
 
-  @Query(() => BreedCharacteristic, { name: 'breed-Characteristic' })
+  @Query(() => BreedCharacteristic, { name: 'breedCharacteristic' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.breedCharacteristicService.findOne(id);
   }
