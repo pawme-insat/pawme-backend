@@ -7,7 +7,18 @@ import { validate } from 'env.validation';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DemoModule } from './demo/demo.module';
+import { AddressModule } from './address/address.module';
+import { UserModule } from './user/user.module';
+import { ReviewModule } from './review/review.module';
+import { PetModule } from './pet/pet.module';
+import { LikePetModule } from './like-pet/like-pet.module';
+import { MessageModule } from './message/message.module';
+import { ConversationModule } from './conversation/conversation.module';
+import { MatchModule } from './match/match.module';
+import { PetTypeModule } from './pet-type/pet-type.module';
+import { BreedModule } from './breed/breed.module';
+import { BreedCharacteristicModule } from './breed-characteristic/breed-characteristic.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,7 +35,18 @@ import { DemoModule } from './demo/demo.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    DemoModule,
+    AddressModule,
+    UserModule,
+    ReviewModule,
+    PetModule,
+    LikePetModule,
+    MessageModule,
+    ConversationModule,
+    MatchModule,
+    PetTypeModule,
+    BreedModule,
+    BreedCharacteristicModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
