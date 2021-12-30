@@ -15,12 +15,12 @@ export class BreedCharacteristicResolver {
     );
   }
 
-  @Query(() => [BreedCharacteristic], { name: 'breed-Characteristics' })
+  @Query(() => [BreedCharacteristic], { name: 'breed_Characteristics' })
   findAll() {
     return this.breedCharacteristicService.findAll({});
   }
 
-  @Query(() => BreedCharacteristic, { name: 'breed-Characteristic' })
+  @Query(() => BreedCharacteristic, { name: 'breed_Characteristic' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.breedCharacteristicService.findOne(id);
   }

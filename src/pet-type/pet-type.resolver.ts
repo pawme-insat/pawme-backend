@@ -13,12 +13,12 @@ export class PetTypeResolver {
     return this.typeService.create(createTypeInput);
   }
 
-  @Query(() => [PetType], { name: 'pet-types' })
+  @Query(() => [PetType], { name: 'pet_types' })
   findAll() {
     return this.typeService.findAll({});
   }
 
-  @Query(() => PetType, { name: 'pet-type' })
+  @Query(() => PetType, { name: 'pet_type' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.typeService.findOne(id);
   }
