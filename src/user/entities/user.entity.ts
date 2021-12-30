@@ -1,4 +1,4 @@
-import { Field, HideField, Int, ObjectType } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import {
   Column,
   Entity,
@@ -11,7 +11,7 @@ import { Address } from '../../address/entities/address.entity';
 import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'users' })
 export class User {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

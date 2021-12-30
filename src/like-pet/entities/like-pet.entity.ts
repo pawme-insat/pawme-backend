@@ -1,15 +1,9 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'like-pets' })
 export class LikePet {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()

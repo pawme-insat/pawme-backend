@@ -4,7 +4,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Pet } from '../../pet/entities/pet.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'pet-types' })
 export class PetType {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
