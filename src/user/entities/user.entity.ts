@@ -44,10 +44,14 @@ export class User {
   birth_date: Date;
 
   @Field((type) => Address)
-  @ManyToOne(() => Address, { cascade: true })
+  @ManyToOne(() => Address, { cascade: true, eager: true })
   address: Address;
 
   @Field((type) => [Pet])
-  @OneToMany(() => Pet, (Pet) => Pet.user, { cascade: true })
+  @OneToMany(() => Pet, (Pet) => Pet.user, {
+    cascade: true,
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   pets: Pet[];
 }

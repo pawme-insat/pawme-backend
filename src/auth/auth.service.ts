@@ -59,10 +59,10 @@ export class AuthService {
         const payload: PayloadDto = {
           email: user.email,
         };
-        const jwt = this.jwtService.sign(payload);
-        return {
-          token: jwt,
-        };
+        const token = this.jwtService.sign(payload);
+        user.password = 'hidden';
+        const result = { token, user };
+        return result;
       }
     }
   }
