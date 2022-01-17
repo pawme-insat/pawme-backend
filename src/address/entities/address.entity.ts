@@ -1,9 +1,10 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 
 @ObjectType()
 @Entity({ name: 'addresses' })
-export class Address {
+export class Address extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;

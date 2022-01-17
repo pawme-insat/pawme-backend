@@ -10,6 +10,6 @@ export class ReviewService extends GenericService<Review> {
     @InjectRepository(Review)
     private readonly myRepository: Repository<Review>,
   ) {
-    super(myRepository);
+    super(myRepository, { useSoftDelete: true });
   }
 }

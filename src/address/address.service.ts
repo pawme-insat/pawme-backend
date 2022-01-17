@@ -10,6 +10,6 @@ export class AddressService extends GenericService<Address> {
     @InjectRepository(Address)
     private readonly myRepository: Repository<Address>,
   ) {
-    super(myRepository);
+    super(myRepository, { useSoftDelete: true });
   }
 }

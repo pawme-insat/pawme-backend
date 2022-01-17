@@ -3,6 +3,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { PetType } from '../../pet-type/entities/pet-type.entity';
 import { User } from '../../user/entities/user.entity';
+import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 
 enum Sexe {
   'Masculin' = 'M',
@@ -14,7 +15,7 @@ registerEnumType(Sexe, {
 
 @ObjectType()
 @Entity({ name: 'pets' })
-export class Pet {
+export class Pet extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;

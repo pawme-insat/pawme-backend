@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { CreateBreedInput } from './dto/create-breed.input';
-import { UpdateBreedInput } from './dto/update-breed.input';
 import { GenericService } from '../generics/generic/generic.service';
 import { Breed } from './entities/breed.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,6 +10,6 @@ export class BreedService extends GenericService<Breed> {
     @InjectRepository(Breed)
     private readonly myRepository: Repository<Breed>,
   ) {
-    super(myRepository);
+    super(myRepository, { useSoftDelete: true });
   }
 }

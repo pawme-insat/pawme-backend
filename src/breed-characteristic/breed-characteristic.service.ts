@@ -10,6 +10,6 @@ export class BreedCharacteristicService extends GenericService<BreedCharacterist
     @InjectRepository(BreedCharacteristic)
     private readonly myRepository: Repository<BreedCharacteristic>,
   ) {
-    super(myRepository);
+    super(myRepository, { useSoftDelete: true });
   }
 }

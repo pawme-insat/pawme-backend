@@ -10,6 +10,6 @@ export class MatchService extends GenericService<Match> {
     @InjectRepository(Match)
     private readonly myRepository: Repository<Match>,
   ) {
-    super(myRepository);
+    super(myRepository, { useSoftDelete: true });
   }
 }

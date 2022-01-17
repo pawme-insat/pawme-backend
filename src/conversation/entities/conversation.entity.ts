@@ -8,10 +8,11 @@ import {
 } from 'typeorm';
 import { Match } from '../../match/entities/match.entity';
 import { Message } from '../../message/entities/message.entity';
+import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 
 @ObjectType()
 @Entity({ name: 'conversations' })
-export class Conversation {
+export class Conversation extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;
