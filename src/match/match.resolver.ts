@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { MatchService } from './match.service';
 import { Match } from './entities/match.entity';
 import { CreateMatchInput } from './dto/create-match.input';
@@ -30,6 +30,11 @@ export class MatchResolver {
 
   @Mutation(() => Match)
   removeMatch(@Args('id', { type: () => Int }) id: number) {
-    return this.matchService.remove(id);
+    try {
+      this.matchService.remove(id);
+      return 'Match deleted successfully';
+    } catch (e) {
+      return 'Error while deleting match';
+    }
   }
 }

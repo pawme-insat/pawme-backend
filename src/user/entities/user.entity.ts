@@ -56,7 +56,7 @@ export class User extends TimeStampEntity {
   })
   pets: Pet[];
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   image: string;
 }

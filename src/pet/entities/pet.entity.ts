@@ -9,6 +9,7 @@ enum Sexe {
   'Masculin' = 'M',
   'Feminin' = 'F',
 }
+
 registerEnumType(Sexe, {
   name: 'Sexe',
 });
@@ -44,23 +45,23 @@ export class Pet extends TimeStampEntity {
   @ManyToOne(() => User, (User) => User.pets)
   user: User;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   image1: string;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   image2: string;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   image3: string;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   image4: string;
 
-  @Field()
-  @Column()
+  @Field({ nullable: true })
+  @Column({ nullable: true })
   image5: string;
 }

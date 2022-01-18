@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PetService } from './pet.service';
 import { Pet } from './entities/pet.entity';
 import { CreatePetInput } from './dto/create-pet.input';
@@ -28,8 +28,13 @@ export class PetResolver {
     return this.petService.update(updatePetInput.id, updatePetInput);
   }
 
-  @Mutation(() => Pet)
+  @Mutation(() => String)
   removePet(@Args('id', { type: () => Int }) id: number) {
-    return this.petService.remove(id);
+    try {
+      this.petService.remove(id);
+      return 'Pet deleted successfully';
+    } catch (e) {
+      return 'Error while deleting pet';
+    }
   }
 }
