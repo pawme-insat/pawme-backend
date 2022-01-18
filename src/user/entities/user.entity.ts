@@ -55,4 +55,8 @@ export class User extends TimeStampEntity {
     onDelete: 'CASCADE',
   })
   pets: Pet[];
+
+  @Field()
+  @Column()
+  image: string;
 }

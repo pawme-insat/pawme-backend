@@ -43,4 +43,24 @@ export class Pet extends TimeStampEntity {
   @Field((type) => User)
   @ManyToOne(() => User, (User) => User.pets)
   user: User;
+
+  @Field()
+  @Column()
+  image1: string;
+
+  @Field()
+  @Column()
+  image2: string;
+
+  @Field()
+  @Column()
+  image3: string;
+
+  @Field()
+  @Column()
+  image4: string;
+
+  @Field()
+  @Column()
+  image5: string;
 }
