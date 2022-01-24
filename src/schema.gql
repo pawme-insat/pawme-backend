@@ -51,6 +51,7 @@ type User {
   phone: Int!
   email: String!
   password: String!
+  bio: String!
   birth_date: DateTime!
   address: Address!
   pets: [Pet!]!
@@ -191,6 +192,7 @@ input CreateUserInput {
   first_name: String!
   last_name: String!
   phone: Int!
+  bio: String!
   email: String!
   birth_date: DateTime!
   address: CreateAddressInput!
@@ -201,6 +203,7 @@ input UpdateUserInput {
   first_name: String
   last_name: String
   phone: Int
+  bio: String
   email: String
   birth_date: DateTime
   address: CreateAddressInput

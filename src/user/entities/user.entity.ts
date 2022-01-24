@@ -35,11 +35,11 @@ export class User {
   email: string;
 
   @Field()
-  @Column({ nullable: true })
+  @Column()
   password: string;
 
   @Field()
-  @Column()
+  @Column({ nullable: true })
   bio: string;
 
   @Field((newType) => Date)
