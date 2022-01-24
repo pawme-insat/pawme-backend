@@ -28,8 +28,13 @@ export class PetTypeResolver {
     return this.typeService.update(updateTypeInput.id, updateTypeInput);
   }
 
-  @Mutation(() => PetType)
+  @Mutation(() => String)
   removeType(@Args('id', { type: () => Int }) id: number) {
-    return this.typeService.remove(id);
+    try {
+      this.typeService.remove(id);
+      return 'Pet Type deleted successfully';
+    } catch (e) {
+      return 'Error while deleting pet type';
+    }
   }
 }

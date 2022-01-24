@@ -9,10 +9,11 @@ import {
 import { IsDate, IsEmail } from 'class-validator';
 import { Address } from '../../address/entities/address.entity';
 import { Pet } from '../../pet/entities/pet.entity';
+import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 
 @ObjectType()
 @Entity({ name: 'users' })
-export class User {
+export class User extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;
@@ -58,4 +59,8 @@ export class User {
     onDelete: 'CASCADE',
   })
   pets: Pet[];
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  image: string;
 }

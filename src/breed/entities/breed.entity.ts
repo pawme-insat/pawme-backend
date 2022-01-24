@@ -9,10 +9,11 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PetType } from '../../pet-type/entities/pet-type.entity';
+import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 
 @ObjectType()
 @Entity({ name: 'breeds' })
-export class Breed {
+export class Breed extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;

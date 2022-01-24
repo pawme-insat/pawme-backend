@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { BreedService } from './breed.service';
 import { Breed } from './entities/breed.entity';
 import { CreateBreedInput } from './dto/create-breed.input';
@@ -30,6 +30,11 @@ export class BreedResolver {
 
   @Mutation(() => Breed)
   removeBreed(@Args('id', { type: () => Int }) id: number) {
-    return this.breedService.remove(id);
+    try {
+      this.breedService.remove(id);
+      return 'Breed deleted successfully';
+    } catch (e) {
+      return 'Error while deleting breed';
+    }
   }
 }

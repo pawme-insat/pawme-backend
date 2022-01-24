@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { BreedCharacteristicService } from './breed-characteristic.service';
 import { BreedCharacteristic } from './entities/breed-characteristic.entity';
 import { CreateBreedCharacteristicInput } from './dto/create-breed-characteristic.input';
@@ -6,10 +6,15 @@ import { UpdateBreedCharacteristicInput } from './dto/update-breed-characteristi
 
 @Resolver(() => BreedCharacteristic)
 export class BreedCharacteristicResolver {
-  constructor(private readonly breedCharacteristicService: BreedCharacteristicService) {}
+  constructor(
+    private readonly breedCharacteristicService: BreedCharacteristicService,
+  ) {}
 
   @Mutation(() => BreedCharacteristic)
-  createBreedCharacteristic(@Args('createBreedCharacteristicInput') createBreedCharacteristicInput: CreateBreedCharacteristicInput) {
+  createBreedCharacteristic(
+    @Args('createBreedCharacteristicInput')
+    createBreedCharacteristicInput: CreateBreedCharacteristicInput,
+  ) {
     return this.breedCharacteristicService.create(
       createBreedCharacteristicInput,
     );
@@ -36,8 +41,13 @@ export class BreedCharacteristicResolver {
     );
   }
 
-  @Mutation(() => BreedCharacteristic)
+  @Mutation(() => String)
   removeBreedCharacteristic(@Args('id', { type: () => Int }) id: number) {
-    return this.breedCharacteristicService.remove(id);
+    try {
+      this.breedCharacteristicService.remove(id);
+      return 'Breed Characteristic deleted successfully';
+    } catch (e) {
+      return 'Error while deleting breed characteristic';
+    }
   }
 }

@@ -28,8 +28,13 @@ export class UserResolver {
     return this.userService.update(updateUserInput.id, updateUserInput);
   }
 
-  @Mutation(() => User)
+  @Mutation(() => String)
   removeUser(@Args('id', { type: () => Int }) id: number) {
-    return this.userService.remove(id);
+    try {
+      this.userService.remove(id);
+      return 'User deleted successfully';
+    } catch (e) {
+      return 'Error while deleting user';
+    }
   }
 }

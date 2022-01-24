@@ -35,8 +35,13 @@ export class AddressResolver {
     );
   }
 
-  @Mutation(() => Address)
+  @Mutation(() => String)
   removeAddress(@Args('id', { type: () => Int }) id: number) {
-    return this.addressService.remove(id);
+    try {
+      this.addressService.remove(id);
+      return 'Address deleted successfully';
+    } catch (e) {
+      return 'Error while deleting address';
+    }
   }
 }

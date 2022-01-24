@@ -29,4 +29,19 @@ export class CreatePetInput {
 
   @Field()
   type: number;
+
+  @Field()
+  image1: string;
+
+  @Field()
+  image2: string;
+
+  @Field()
+  image3: string;
+
+  @Field()
+  image4: string;
+
+  @Field()
+  image5: string;
 }

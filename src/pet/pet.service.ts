@@ -10,6 +10,6 @@ export class PetService extends GenericService<Pet> {
     @InjectRepository(Pet)
     private readonly myRepository: Repository<Pet>,
   ) {
-    super(myRepository);
+    super(myRepository, { useSoftDelete: true });
   }
 }

@@ -30,6 +30,11 @@ export class LikePetResolver {
 
   @Mutation(() => LikePet)
   removeLike(@Args('id', { type: () => Int }) id: number) {
-    return this.likeService.remove(id);
+    try {
+      this.likeService.remove(id);
+      return 'Like-Pet deleted successfully';
+    } catch (e) {
+      return 'Error while deleting like';
+    }
   }
 }

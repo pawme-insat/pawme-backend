@@ -3,7 +3,6 @@ import { GenericService } from '../generics/generic/generic.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { CreateUserInput } from './dto/create-user.input';
 
 @Injectable()
 export class UserService extends GenericService<User> {
@@ -11,7 +10,7 @@ export class UserService extends GenericService<User> {
     @InjectRepository(User)
     private readonly myRepository: Repository<User>,
   ) {
-    super(myRepository);
+    super(myRepository, { useSoftDelete: true });
   }
 
   async findUserByEmail(email: string): Promise<User | undefined> {

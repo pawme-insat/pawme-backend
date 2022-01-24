@@ -10,6 +10,6 @@ export class MessageService extends GenericService<Message> {
     @InjectRepository(Message)
     private readonly myRepository: Repository<Message>,
   ) {
-    super(myRepository);
+    super(myRepository, { useSoftDelete: true });
   }
 }
