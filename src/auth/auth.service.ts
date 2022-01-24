@@ -1,15 +1,15 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {BadRequestException, Injectable} from '@nestjs/common';
 
-import { User } from 'src/user/entities/user.entity';
-import { RegisterDto } from './dto/register.dto';
-import { SignInDto } from './dto/signin.dto';
-import { UserService } from '../user/user.service';
+import {User} from 'src/user/entities/user.entity';
+import {RegisterDto} from './dto/register.dto';
+import {SignInDto} from './dto/signin.dto';
+import {UserService} from '../user/user.service';
 
 import * as bcrypt from 'bcrypt';
-import { JwtService } from '@nestjs/jwt';
-import { PayloadDto } from './dto/payload.dto';
-import { SignInResponseDto } from './dto/signin-response.dto';
-import { ValidateEmailResponseDto } from './dto/validate-email-response.dto';
+import {JwtService} from '@nestjs/jwt';
+import {PayloadDto} from './dto/payload.dto';
+import {SignInResponseDto} from './dto/signin-response.dto';
+import {ValidateEmailResponseDto} from './dto/validate-email-response.dto';
 
 @Injectable()
 export class AuthService {
@@ -33,8 +33,7 @@ export class AuthService {
       throw new BadRequestException('User existant !!');
     } else {
       const salt = await bcrypt.genSalt();
-      const hashedPassword = await bcrypt.hash(password, salt);
-      registerDto.password = hashedPassword;
+      registerDto.password = await bcrypt.hash(password, salt);
       const newUser = await this.userService.create(registerDto);
       delete newUser.password;
       newUser.password = 'hidden';

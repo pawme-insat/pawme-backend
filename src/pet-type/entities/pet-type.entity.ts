@@ -15,10 +15,10 @@ export class PetType {
   name: string;
 
   @Field((type) => [Breed])
-  @OneToMany(() => Breed, (Breed) => Breed.type)
+  @OneToMany(() => Breed, (Breed) => Breed.type, {
+    onDelete: 'CASCADE',
+    cascade: true,
+    nullable: true,
+  })
   breeds: Breed[];
-
-  @Field((type) => [Pet])
-  @OneToMany(() => Pet, (Pet) => Pet.type)
-  pets: Pet[];
 }

@@ -16,18 +16,17 @@ type BreedCharacteristic {
   description: String
 }
 
+type PetType {
+  id: Int!
+  name: String!
+  breeds: [Breed!]!
+}
+
 type Breed {
   id: Int!
   name: String!
   breed_characteristics: [BreedCharacteristic!]!
   type: PetType!
-}
-
-type PetType {
-  id: Int!
-  name: String!
-  breeds: [Breed!]!
-  pets: [Pet!]!
 }
 
 type Pet {
@@ -36,7 +35,7 @@ type Pet {
   age: Int!
   sexe: Sexe!
   aboutMe: String!
-  type: PetType!
+  type: Breed!
   user: User!
 }
 
@@ -219,30 +218,13 @@ input CreatePetInput {
   age: Int!
   sexe: SexeEnum!
   aboutMe: String!
-  type: CreatePetTypeInput!
-  user: CreateUserInput!
+  user: Float!
+  type: Float!
 }
 
 enum SexeEnum {
   Masculin
   Feminin
-}
-
-input CreatePetTypeInput {
-  name: String!
-  breeds: [CreateBreedInput!]!
-  pets: [CreatePetInput!]!
-}
-
-input CreateBreedInput {
-  name: String!
-  breed_characteristics: [CreateBreedCharacteristicInput!]!
-  type: CreatePetTypeInput!
-}
-
-input CreateBreedCharacteristicInput {
-  label: String!
-  description: String
 }
 
 input UpdateReviewInput {
@@ -256,8 +238,8 @@ input UpdatePetInput {
   age: Int
   sexe: SexeEnum
   aboutMe: String
-  type: CreatePetTypeInput
-  user: CreateUserInput
+  user: Float
+  type: Float
   id: Int!
 }
 
@@ -309,18 +291,29 @@ input UpdateMatchInput {
   id: Int!
 }
 
+input CreatePetTypeInput {
+  name: String!
+}
+
 input UpdatePetTypeInput {
   name: String
-  breeds: [CreateBreedInput!]
-  pets: [CreatePetInput!]
   id: Int!
+}
+
+input CreateBreedInput {
+  name: String!
+  type: Float!
 }
 
 input UpdateBreedInput {
   name: String
-  breed_characteristics: [CreateBreedCharacteristicInput!]
-  type: CreatePetTypeInput
+  type: Float
   id: Int!
+}
+
+input CreateBreedCharacteristicInput {
+  label: String!
+  description: String
 }
 
 input UpdateBreedCharacteristicInput {

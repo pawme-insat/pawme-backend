@@ -6,10 +6,4 @@ import { CreatePetInput } from '../../pet/dto/create-pet.input';
 export class CreatePetTypeInput {
   @Field()
   name: string;
-
-  @Field((type) => [CreateBreedInput])
-  breeds: CreateBreedInput[];
-
-  @Field((type) => [CreatePetInput])
-  pets: CreatePetInput[];
 }

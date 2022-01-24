@@ -27,6 +27,6 @@ export class Breed {
   breed_characteristics: BreedCharacteristic[];
 
   @Field((type) => PetType)
-  @ManyToOne(() => PetType, (e) => e.breeds)
+  @ManyToOne(() => PetType, (e) => e.breeds, {eager: true})
   type: PetType;
 }
