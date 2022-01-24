@@ -35,8 +35,12 @@ export class User {
   email: string;
 
   @Field()
-  @Column()
+  @Column({ nullable: true })
   password: string;
+
+  @Field()
+  @Column()
+  bio: string;
 
   @Field((newType) => Date)
   @IsDate()

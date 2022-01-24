@@ -17,6 +17,9 @@ export class CreateUserInput {
   phone: number;
 
   @Field()
+  bio: string;
+
+  @Field()
   @IsNotEmpty()
   @IsEmail()
   email: string;
