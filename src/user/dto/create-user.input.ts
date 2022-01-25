@@ -36,7 +36,4 @@ export class CreateUserInput {
   @Field()
   @IsNotEmpty()
   password: string;
-
-  @Field()
-  image: string;
 }
