@@ -9,10 +9,11 @@ import {
 import { IsDate, IsEmail } from 'class-validator';
 import { Address } from '../../address/entities/address.entity';
 import { Pet } from '../../pet/entities/pet.entity';
+import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 
 @ObjectType()
 @Entity({ name: 'users' })
-export class User {
+export class User extends TimeStampEntity {
   @Field((type) => Int)
   @PrimaryGeneratedColumn()
   id: number;
@@ -38,16 +39,28 @@ export class User {
   @Column()
   password: string;
 
+  @Field()
+  @Column({ nullable: true })
+  bio: string;
+
   @Field((newType) => Date)
   @IsDate()
   @Column()
   birth_date: Date;
 
   @Field((type) => Address)
-  @ManyToOne(() => Address, { cascade: true })
+  @ManyToOne(() => Address, { cascade: true, eager: true })
   address: Address;
 
   @Field((type) => [Pet])
-  @OneToMany(() => Pet, (Pet) => Pet.user, { cascade: true })
+  @OneToMany(() => Pet, (Pet) => Pet.user, {
+    cascade: true,
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   pets: Pet[];
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  image: string;
 }

@@ -13,12 +13,12 @@ export class PetTypeResolver {
     return this.typeService.create(createTypeInput);
   }
 
-  @Query(() => [PetType], { name: 'petTypes' })
+  @Query(() => [PetType], { name: 'pet_types' })
   findAll() {
     return this.typeService.findAll({});
   }
 
-  @Query(() => PetType, { name: 'petType' })
+  @Query(() => PetType, { name: 'pet_type' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.typeService.findOne(id);
   }
@@ -28,8 +28,13 @@ export class PetTypeResolver {
     return this.typeService.update(updateTypeInput.id, updateTypeInput);
   }
 
-  @Mutation(() => PetType)
+  @Mutation(() => String)
   removeType(@Args('id', { type: () => Int }) id: number) {
-    return this.typeService.remove(id);
+    try {
+      this.typeService.remove(id);
+      return 'Pet Type deleted successfully';
+    } catch (e) {
+      return 'Error while deleting pet type';
+    }
   }
 }

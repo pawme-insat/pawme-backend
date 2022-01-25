@@ -1,4 +1,4 @@
-import { Field, HideField, InputType, Int } from '@nestjs/graphql';
+import { Field, InputType, Int } from '@nestjs/graphql';
 import { IsDate, IsEmail, IsNotEmpty } from 'class-validator';
 import { CreateAddressInput } from '../../address/dto/create-address.input';
 
@@ -17,6 +17,9 @@ export class CreateUserInput {
   phone: number;
 
   @Field()
+  bio: string;
+
+  @Field()
   @IsNotEmpty()
   @IsEmail()
   email: string;
@@ -33,4 +36,7 @@ export class CreateUserInput {
   @Field()
   @IsNotEmpty()
   password: string;
+
+  @Field()
+  image: string;
 }

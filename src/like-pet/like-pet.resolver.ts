@@ -13,12 +13,12 @@ export class LikePetResolver {
     return this.likeService.create(createLikeInput);
   }
 
-  @Query(() => [LikePet], { name: 'petLikes' })
+  @Query(() => [LikePet], { name: 'pet_likes' })
   findAll() {
     return this.likeService.findAll({});
   }
 
-  @Query(() => LikePet, { name: 'petLike' })
+  @Query(() => LikePet, { name: 'pet_like' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.likeService.findOne(id);
   }
@@ -30,6 +30,11 @@ export class LikePetResolver {
 
   @Mutation(() => LikePet)
   removeLike(@Args('id', { type: () => Int }) id: number) {
-    return this.likeService.remove(id);
+    try {
+      this.likeService.remove(id);
+      return 'Like-Pet deleted successfully';
+    } catch (e) {
+      return 'Error while deleting like';
+    }
   }
 }

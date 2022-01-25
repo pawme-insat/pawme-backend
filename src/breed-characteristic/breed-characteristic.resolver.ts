@@ -20,12 +20,12 @@ export class BreedCharacteristicResolver {
     );
   }
 
-  @Query(() => [BreedCharacteristic], { name: 'breedCharacteristics' })
+  @Query(() => [BreedCharacteristic], { name: 'breed_Characteristics' })
   findAll() {
     return this.breedCharacteristicService.findAll({});
   }
 
-  @Query(() => BreedCharacteristic, { name: 'breedCharacteristic' })
+  @Query(() => BreedCharacteristic, { name: 'breed_Characteristic' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.breedCharacteristicService.findOne(id);
   }
@@ -41,8 +41,13 @@ export class BreedCharacteristicResolver {
     );
   }
 
-  @Mutation(() => BreedCharacteristic)
+  @Mutation(() => String)
   removeBreedCharacteristic(@Args('id', { type: () => Int }) id: number) {
-    return this.breedCharacteristicService.remove(id);
+    try {
+      this.breedCharacteristicService.remove(id);
+      return 'Breed Characteristic deleted successfully';
+    } catch (e) {
+      return 'Error while deleting breed characteristic';
+    }
   }
 }

@@ -24,9 +24,24 @@ export class CreatePetInput {
   @Field()
   aboutMe: string;
 
-  @Field((type) => CreatePetTypeInput)
-  type: CreatePetTypeInput;
+  @Field()
+  user: number;
 
-  @Field((type) => CreateUserInput)
-  user: CreateUserInput;
+  @Field()
+  type: number;
+
+  @Field()
+  image1: string;
+
+  @Field()
+  image2: string;
+
+  @Field()
+  image3: string;
+
+  @Field()
+  image4: string;
+
+  @Field()
+  image5: string;
 }

@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ConversationService } from './conversation.service';
 import { Conversation } from './entities/conversation.entity';
 import { CreateConversationInput } from './dto/create-conversation.input';
@@ -9,7 +9,10 @@ export class ConversationResolver {
   constructor(private readonly conversationService: ConversationService) {}
 
   @Mutation(() => Conversation)
-  createConversation(@Args('createConversationInput') createConversationInput: CreateConversationInput) {
+  createConversation(
+    @Args('createConversationInput')
+    createConversationInput: CreateConversationInput,
+  ) {
     return this.conversationService.create(createConversationInput);
   }
 
@@ -36,6 +39,11 @@ export class ConversationResolver {
 
   @Mutation(() => Conversation)
   removeConversation(@Args('id', { type: () => Int }) id: number) {
-    return this.conversationService.remove(id);
+    try {
+      this.conversationService.remove(id);
+      return 'Conversation deleted successfully';
+    } catch (e) {
+      return 'Error while deleting conversation';
+    }
   }
 }
