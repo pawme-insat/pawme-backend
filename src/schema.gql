@@ -29,6 +29,12 @@ type Breed {
   type: PetType!
 }
 
+type PetGallery {
+  id: Int!
+  filename: String!
+  pet: Pet!
+}
+
 type Pet {
   id: Int!
   name: String!
@@ -37,6 +43,8 @@ type Pet {
   aboutMe: String!
   type: Breed!
   user: User!
+  pdp: String!
+  gallery: [PetGallery!]!
 }
 
 enum Sexe {

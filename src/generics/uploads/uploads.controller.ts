@@ -11,8 +11,8 @@ import { FileInterceptor, MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { editFileName } from './edit-file-name';
 import { UserService } from '../../user/user.service';
-import {v4 as uuidv4} from  'uuid'
-import path from "path";
+import { v4 as uuidv4 } from 'uuid';
+import * as path from 'path';
 
 @Injectable()
 @Controller('uploads')

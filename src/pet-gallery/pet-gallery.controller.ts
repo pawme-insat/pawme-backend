@@ -24,9 +24,7 @@ import { PetService } from '../pet/pet.service';
 @Controller('pet-gallery')
 export class PetGalleryController {
   constructor(
-    private readonly petGalleryService: PetGalleryService,
-    //private createPetGalleryDTO: CreatePetGalleryDto,
-    private petService: PetService,
+    private readonly petGalleryService: PetGalleryService, //private createPetGalleryDTO: CreatePetGalleryDto,
   ) {}
 
   @UseInterceptors(
