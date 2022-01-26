@@ -41,6 +41,6 @@ export class UploadsController {
       //user.image = gallery.filename;
       //return await this.userService.update(1, user);
     }*/
-    console.log(file.path);
+    console.log(file.filename);
   }
 }
