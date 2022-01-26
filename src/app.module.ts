@@ -23,6 +23,7 @@ import { UploadsController } from './generics/uploads/uploads.controller';
 import { MulterModule } from '@nestjs/platform-express';
 import { UploadModule } from './generics/upload/upload.module';
 import { PetGalleryModule } from './pet-gallery/pet-gallery.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { PetGalleryModule } from './pet-gallery/pet-gallery.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'uploads') }),
     AddressModule,
     UserModule,
     ReviewModule,

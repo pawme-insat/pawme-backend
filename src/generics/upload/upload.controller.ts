@@ -11,6 +11,8 @@ import { diskStorage } from 'multer';
 import * as path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
+import fs from 'fs';
+
 @Controller('upload')
 export class UploadController {
   constructor(private userService: UserService) {}
@@ -36,7 +38,16 @@ export class UploadController {
     if (user == null) {
       return BadRequestException;
     } else {
+      if (user.image != '') {
+        const path = './uploads/profileimages/' + user.image;
+        try {
+          fs.unlinkSync(path);
+        } catch (e) {
+          console.log(e);
+        }
+      }
       user.image = file.filename;
+      console.log(file.path);
       return await this.userService.update(1, user);
     }
   }
