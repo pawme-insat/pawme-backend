@@ -19,6 +19,11 @@ import { PetTypeModule } from './pet-type/pet-type.module';
 import { BreedModule } from './breed/breed.module';
 import { BreedCharacteristicModule } from './breed-characteristic/breed-characteristic.module';
 import { AuthModule } from './auth/auth.module';
+import { UploadsController } from './generics/uploads/uploads.controller';
+import { MulterModule } from '@nestjs/platform-express';
+import { UploadModule } from './generics/upload/upload.module';
+import { PetGalleryModule } from './pet-gallery/pet-gallery.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -35,6 +40,7 @@ import { AuthModule } from './auth/auth.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'uploads') }),
     AddressModule,
     UserModule,
     ReviewModule,
@@ -47,8 +53,11 @@ import { AuthModule } from './auth/auth.module';
     BreedModule,
     BreedCharacteristicModule,
     AuthModule,
+    MulterModule.register({}),
+    UploadModule,
+    PetGalleryModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, UploadsController],
   providers: [AppService],
 })
 export class AppModule {}

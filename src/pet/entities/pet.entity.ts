@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -11,6 +12,8 @@ import { PetType } from '../../pet-type/entities/pet-type.entity';
 import { User } from '../../user/entities/user.entity';
 import { Breed } from '../../breed/entities/breed.entity';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
+import { PetGallery } from '../../pet-gallery/entities/pet-gallery.entity';
+import {IsDate} from "class-validator";
 
 enum Sexe {
   'Masculin' = 'M',
@@ -32,9 +35,10 @@ export class Pet extends TimeStampEntity {
   @Column()
   name: string;
 
-  @Field((type) => Int)
+  @Field((newType) => Date)
+  @IsDate()
   @Column()
-  age: number;
+  birth_date: Date;
 
   @Field((type) => Sexe)
   @Column()
@@ -52,23 +56,14 @@ export class Pet extends TimeStampEntity {
   @ManyToOne(() => User, (User) => User.pets, {})
   user: User;
 
-  @Field({ nullable: true })
+  @Field()
   @Column({ nullable: true })
-  image1: string;
+  pdp: string;
 
-  @Field({ nullable: true })
-  @Column({ nullable: true })
-  image2: string;
-
-  @Field({ nullable: true })
-  @Column({ nullable: true })
-  image3: string;
-
-  @Field({ nullable: true })
-  @Column({ nullable: true })
-  image4: string;
-
-  @Field({ nullable: true })
-  @Column({ nullable: true })
-  image5: string;
+  @Field(() => [PetGallery])
+  @OneToMany(() => PetGallery, (Gallery) => Gallery.pet, {
+    eager: true,
+    nullable: true,
+  })
+  gallery: PetGallery[];
 }

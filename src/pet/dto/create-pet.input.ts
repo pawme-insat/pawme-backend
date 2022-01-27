@@ -1,6 +1,7 @@
 import { Field, InputType, Int, registerEnumType } from '@nestjs/graphql';
 import { CreatePetTypeInput } from '../../pet-type/dto/create-pet-type.input';
 import { CreateUserInput } from '../../user/dto/create-user.input';
+import {IsDate, IsNotEmpty} from "class-validator";
 
 enum Sexe {
   'Masculin' = 'M',
@@ -15,8 +16,10 @@ export class CreatePetInput {
   @Field()
   name: string;
 
-  @Field((type) => Int)
-  age: number;
+  @Field((newType) => Date)
+  @IsNotEmpty()
+  @IsDate()
+  birth_date: Date;
 
   @Field((type) => Sexe)
   sexe: Sexe;
@@ -29,19 +32,4 @@ export class CreatePetInput {
 
   @Field()
   type: number;
-
-  @Field()
-  image1: string;
-
-  @Field()
-  image2: string;
-
-  @Field()
-  image3: string;
-
-  @Field()
-  image4: string;
-
-  @Field()
-  image5: string;
 }

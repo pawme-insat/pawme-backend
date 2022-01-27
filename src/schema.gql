@@ -29,6 +29,12 @@ type Breed {
   type: PetType!
 }
 
+type PetGallery {
+  id: Int!
+  filename: String!
+  pet: Pet!
+}
+
 type Pet {
   id: Int!
   name: String!
@@ -37,6 +43,8 @@ type Pet {
   aboutMe: String!
   type: Breed!
   user: User!
+  pdp: String!
+  gallery: [PetGallery!]!
 }
 
 enum Sexe {
@@ -55,6 +63,7 @@ type User {
   birth_date: DateTime!
   address: Address!
   pets: [Pet!]!
+  image: String
 }
 
 """
@@ -139,22 +148,22 @@ input SignInDto {
 type Mutation {
   createAddress(createAddressInput: CreateAddressInput!): Address!
   updateAddress(updateAddressInput: UpdateAddressInput!): Address!
-  removeAddress(id: Int!): Address!
+  removeAddress(id: Int!): String!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
+  removeUser(id: Int!): String!
   createReview(createReviewInput: CreateReviewInput!): Review!
   updateReview(updateReviewInput: UpdateReviewInput!): Review!
-  removeReview(id: Int!): Review!
+  removeReview(id: Int!): String!
   createPet(createPetInput: CreatePetInput!): Pet!
   updatePet(updatePetInput: UpdatePetInput!): Pet!
-  removePet(id: Int!): Pet!
+  removePet(id: Int!): String!
   createLike(createLikeInput: CreateLikePetInput!): LikePet!
   updateLike(updateLikeInput: UpdateLikePetInput!): LikePet!
   removeLike(id: Int!): LikePet!
   createMessage(createMessageInput: CreateMessageInput!): Message!
   updateMessage(updateMessageInput: UpdateMessageInput!): Message!
-  removeMessage(id: Int!): Message!
+  removeMessage(id: Int!): String!
   createConversation(createConversationInput: CreateConversationInput!): Conversation!
   updateConversation(updateConversationInput: UpdateConversationInput!): Conversation!
   removeConversation(id: Int!): Conversation!
@@ -163,13 +172,13 @@ type Mutation {
   removeMatch(id: Int!): Match!
   createType(createTypeInput: CreatePetTypeInput!): PetType!
   updateType(updateTypeInput: UpdatePetTypeInput!): PetType!
-  removeType(id: Int!): PetType!
+  removeType(id: Int!): String!
   createBreed(createBreedInput: CreateBreedInput!): Breed!
   updateBreed(updateBreedInput: UpdateBreedInput!): Breed!
   removeBreed(id: Int!): Breed!
   createBreedCharacteristic(createBreedCharacteristicInput: CreateBreedCharacteristicInput!): BreedCharacteristic!
   updateBreedCharacteristic(updateBreedCharacteristicInput: UpdateBreedCharacteristicInput!): BreedCharacteristic!
-  removeBreedCharacteristic(id: Int!): BreedCharacteristic!
+  removeBreedCharacteristic(id: Int!): String!
   SignUp(registerDto: RegisterDto!): User!
 }
 
@@ -209,6 +218,7 @@ input UpdateUserInput {
   address: CreateAddressInput
   password: String
   id: Int!
+  image: String!
 }
 
 input CreateReviewInput {
