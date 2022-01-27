@@ -13,6 +13,7 @@ import { User } from '../../user/entities/user.entity';
 import { Breed } from '../../breed/entities/breed.entity';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 import { PetGallery } from '../../pet-gallery/entities/pet-gallery.entity';
+import {IsDate} from "class-validator";
 
 enum Sexe {
   'Masculin' = 'M',
@@ -34,9 +35,10 @@ export class Pet extends TimeStampEntity {
   @Column()
   name: string;
 
-  @Field((type) => Int)
+  @Field((newType) => Date)
+  @IsDate()
   @Column()
-  age: number;
+  birth_date: Date;
 
   @Field((type) => Sexe)
   @Column()
