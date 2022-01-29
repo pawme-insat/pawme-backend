@@ -39,7 +39,7 @@ export class User extends TimeStampEntity {
   @Column()
   password: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ nullable: true })
   bio: string;
 
