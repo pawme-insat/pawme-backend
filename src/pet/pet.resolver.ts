@@ -10,6 +10,8 @@ export class PetResolver {
 
   @Mutation(() => Pet)
   createPet(@Args('createPetInput') createPetInput: CreatePetInput) {
+    console.log(createPetInput);
+    // TODO replace with proper breedType logic , get name from property and use typeorm find one to check it exists else create it
     return this.petService.create(createPetInput);
   }
 
