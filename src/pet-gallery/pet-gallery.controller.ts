@@ -41,10 +41,8 @@ export class PetGalleryController {
     }),
   )
   @Post()
-  async create(
-    @UploadedFiles() files: Array<Express.Multer.File>,
-    @Body() id: number,
-  ) {
+  async create(@UploadedFiles() files: Array<Express.Multer.File>) {
+    console.log(files);
     /*const pet = await this.petService.findOne(id);
     if (pet == null) {
       return ImATeapotException;

@@ -1,5 +1,5 @@
 import {
-  BadRequestException,
+  BadRequestException, Body,
   Controller,
   Post,
   UploadedFile,
@@ -33,8 +33,9 @@ export class UploadController {
     }),
   )
   @Post()
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    const user = await this.userService.findOne(1);
+  async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body) {
+    console.log(body.id);
+    const user = await this.userService.findOne(body.id);
     if (user == null) {
       return BadRequestException;
     } else {
@@ -48,7 +49,7 @@ export class UploadController {
       }
       user.image = file.filename;
       console.log(file.path);
-      return await this.userService.update(1, user);
+      return await this.userService.update(body.id, user);
     }
   }
 }

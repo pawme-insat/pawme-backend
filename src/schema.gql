@@ -38,7 +38,7 @@ type PetGallery {
 type Pet {
   id: Int!
   name: String!
-  age: Int!
+  birth_date: DateTime!
   sexe: Sexe!
   aboutMe: String!
   type: Breed!
@@ -46,6 +46,11 @@ type Pet {
   pdp: String!
   gallery: [PetGallery!]!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 enum Sexe {
   Masculin
@@ -65,11 +70,6 @@ type User {
   pets: [Pet!]!
   image: String
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type Review {
   id: Int!
@@ -228,7 +228,7 @@ input CreateReviewInput {
 
 input CreatePetInput {
   name: String!
-  age: Int!
+  birth_date: DateTime!
   sexe: SexeEnum!
   aboutMe: String!
   user: Float!
@@ -248,7 +248,7 @@ input UpdateReviewInput {
 
 input UpdatePetInput {
   name: String
-  age: Int
+  birth_date: DateTime
   sexe: SexeEnum
   aboutMe: String
   user: Float
