@@ -40,7 +40,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'uploads') }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '../uploads'),
+    }),
     AddressModule,
     UserModule,
     ReviewModule,
