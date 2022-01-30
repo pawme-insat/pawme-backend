@@ -1,5 +1,6 @@
 import {
-  BadRequestException, Body,
+  BadRequestException,
+  Body,
   Controller,
   Post,
   UploadedFile,

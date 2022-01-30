@@ -13,7 +13,7 @@ import { User } from '../../user/entities/user.entity';
 import { Breed } from '../../breed/entities/breed.entity';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 import { PetGallery } from '../../pet-gallery/entities/pet-gallery.entity';
-import {IsDate} from "class-validator";
+import { IsDate } from 'class-validator';
 
 enum Sexe {
   'Masculin' = 'M',
