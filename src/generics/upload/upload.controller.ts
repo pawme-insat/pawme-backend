@@ -59,7 +59,40 @@ export class UploadController {
   }
 
   @UseInterceptors(
-    FilesInterceptor('images', 5, {
+    FileInterceptor('image', {
+      storage: diskStorage({
+        destination: process.env.PET_GALLERY,
+        filename: (req, file, cd) => {
+          const filename: string =
+            uuidv4() +
+            path.parse(file.originalname).name.replace(/\s/g, '') +
+            path.parse(file.originalname).ext;
+          console.log('I am here');
+          cd(null, filename);
+        },
+      }),
+    }),
+  )
+  @Post('pet/pdp')
+  async uploadPetPDP(@UploadedFile() file: Express.Multer.File, @Body() body) {
+    console.log(file);
+    const pet = await this.petService.findOne(body.id);
+    if (pet == null) {
+      return ImATeapotException;
+    }
+    // check if the pet has a pdp to replace it
+    if (pet.pdp != '') {
+      deletefile(pet.pdp, process.env.PET_GALLERY);
+    }
+    // Add pdp to pet
+    pet.pdp = file.filename;
+    await this.petService.update(body.id, pet);
+    console.log(pet);
+    return pet;
+  }
+
+  @UseInterceptors(
+    FilesInterceptor('images', 4, {
       storage: diskStorage({
         destination: process.env.PET_GALLERY,
         filename: (req, file, cd) => {
@@ -72,7 +105,7 @@ export class UploadController {
       }),
     }),
   )
-  @Post('pet')
+  @Post('pet/gallery')
   async uploadGallery(
     @UploadedFiles() files: Array<Express.Multer.File>,
     @Body() body,
@@ -82,15 +115,6 @@ export class UploadController {
     if (pet == null) {
       return ImATeapotException;
     }
-    // check if the pet has a pdp to replace it
-    if (pet.pdp != '') {
-      deletefile(pet.pdp, process.env.PET_GALLERY);
-    }
-    // Add pdp to pet
-    pet.pdp = files[0].filename;
-    await this.petService.update(body.id, pet);
-    console.log(pet);
-
     // Add gallery
     for (let i = 1; i < files.length; i++) {
       this.createPetGalleryDto.filename = files[i].filename;
@@ -98,6 +122,6 @@ export class UploadController {
       await this.petGalleryService.create(this.createPetGalleryDto);
     }
 
-    return files;
+    return pet;
   }
 }
