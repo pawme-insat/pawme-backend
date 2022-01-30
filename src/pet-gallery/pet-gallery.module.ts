@@ -9,5 +9,6 @@ import { PetGallery } from './entities/pet-gallery.entity';
   controllers: [PetGalleryController],
   providers: [PetGalleryService],
   imports: [PetModule, TypeOrmModule.forFeature([PetGallery])],
+  exports: [PetGalleryService],
 })
 export class PetGalleryModule {}
