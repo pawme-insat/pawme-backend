@@ -6,15 +6,13 @@ import {
   Patch,
   Param,
   Delete,
-  UseInterceptors,
-  UploadedFiles,
   Injectable,
-  ImATeapotException,
 } from '@nestjs/common';
 import { PetGalleryService } from './pet-gallery.service';
 import { UpdatePetGalleryDto } from './dto/update-pet-gallery.dto';
-import { PetService } from '../pet/pet.service';
 import { CreatePetGalleryDto } from './dto/create-pet-gallery.dto';
+import { deletefile } from '../generics/upload/delete-file-from-server';
+import { PetGallery } from './entities/pet-gallery.entity';
 
 @Injectable()
 @Controller('pet-gallery')
@@ -32,15 +30,19 @@ export class PetGalleryController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string): Promise<PetGallery> {
     return this.petGalleryService.findOne(+id);
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updatePetGalleryDto: UpdatePetGalleryDto,
   ) {
+    const pic = await this.findOne(id);
+    if (pic != null) {
+      deletefile(pic.filename, process.env.PET_GALLERY);
+    }
     return this.petGalleryService.update(+id, updatePetGalleryDto);
   }
 

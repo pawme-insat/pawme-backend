@@ -19,7 +19,6 @@ import { PetTypeModule } from './pet-type/pet-type.module';
 import { BreedModule } from './breed/breed.module';
 import { BreedCharacteristicModule } from './breed-characteristic/breed-characteristic.module';
 import { AuthModule } from './auth/auth.module';
-import { UploadsController } from './generics/uploads/uploads.controller';
 import { MulterModule } from '@nestjs/platform-express';
 import { UploadModule } from './generics/upload/upload.module';
 import { PetGalleryModule } from './pet-gallery/pet-gallery.module';
@@ -57,7 +56,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     UploadModule,
     PetGalleryModule,
   ],
-  controllers: [AppController, UploadsController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

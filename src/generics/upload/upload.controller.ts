@@ -13,10 +13,10 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import * as path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-
-import fs from 'fs';
 import { PetGalleryService } from '../../pet-gallery/pet-gallery.service';
 import { PetService } from '../../pet/pet.service';
+import { CreatePetGalleryDto } from '../../pet-gallery/dto/create-pet-gallery.dto';
+import { deletefile } from './delete-file-from-server';
 
 @Controller('upload')
 export class UploadController {
@@ -24,12 +24,13 @@ export class UploadController {
     private userService: UserService,
     private readonly petGalleryService: PetGalleryService,
     private petService: PetService,
+    private createPetGalleryDto: CreatePetGalleryDto,
   ) {}
 
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
-        destination: './uploads/profileimages',
+        destination: process.env.USER_PDP,
         filename: (req, file, cd) => {
           const filename: string =
             uuidv4() +
@@ -49,12 +50,7 @@ export class UploadController {
       return BadRequestException;
     } else {
       if (user.image != '') {
-        const path = './uploads/profileimages/' + user.image;
-        try {
-          fs.unlinkSync(path);
-        } catch (e) {
-          console.log(e);
-        }
+        deletefile(user.image, process.env.USER_PDP);
       }
       user.image = file.filename;
       console.log(file.path);
@@ -65,7 +61,7 @@ export class UploadController {
   @UseInterceptors(
     FilesInterceptor('images', 5, {
       storage: diskStorage({
-        destination: './uploads/galleryimages',
+        destination: process.env.PET_GALLERY,
         filename: (req, file, cd) => {
           const filename: string =
             uuidv4() +
@@ -88,12 +84,7 @@ export class UploadController {
     }
     // check if the pet has a pdp to replace it
     if (pet.pdp != '') {
-      const path = './uploads/galleryimages/' + pet.pdp;
-      try {
-        fs.unlinkSync(path);
-      } catch (e) {
-        console.log(e);
-      }
+      deletefile(pet.pdp, process.env.PET_GALLERY);
     }
     // Add pdp to pet
     pet.pdp = files[0].filename;
@@ -101,6 +92,12 @@ export class UploadController {
     console.log(pet);
 
     // Add gallery
+    for (let i = 1; i < files.length; i++) {
+      this.createPetGalleryDto.filename = files[i].filename;
+      this.createPetGalleryDto.pet = body.id;
+      await this.petGalleryService.create(this.createPetGalleryDto);
+    }
 
+    return files;
   }
 }
