@@ -49,8 +49,8 @@ export class Pet extends TimeStampEntity {
   aboutMe: string;
 
   @Field((type) => Breed)
-  @ManyToOne(() => Breed, { eager: true, cascade: true })
-  type: Breed;
+  @ManyToOne(() => Breed, { eager: true, cascade: true, nullable: true })
+  breedType: Breed;
 
   @Field((type) => User)
   @ManyToOne(() => User, (User) => User.pets, {})

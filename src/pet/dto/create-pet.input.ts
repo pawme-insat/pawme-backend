@@ -1,7 +1,8 @@
 import { Field, InputType, Int, registerEnumType } from '@nestjs/graphql';
 import { CreatePetTypeInput } from '../../pet-type/dto/create-pet-type.input';
 import { CreateUserInput } from '../../user/dto/create-user.input';
-import { IsDate, IsNotEmpty } from 'class-validator';
+import {IsDate, IsNotEmpty} from "class-validator";
+import { CreateBreedInput } from 'src/breed/dto/create-breed.input';
 
 enum Sexe {
   'Masculin' = 'M',
@@ -31,5 +32,5 @@ export class CreatePetInput {
   user: number;
 
   @Field()
-  type: number;
+  breedType: CreateBreedInput;
 }

@@ -6,6 +6,6 @@ export class UpdateUserInput extends PartialType(CreateUserInput) {
   @Field(() => Int)
   id: number;
 
-  @Field()
-  image: string;
+  @Field({ nullable: true })
+  image?: string;
 }
