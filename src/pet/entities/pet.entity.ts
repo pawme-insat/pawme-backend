@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
@@ -67,7 +68,7 @@ export class Pet extends TimeStampEntity {
   gallery: PetGallery[];
 
   @Field()
-  @ManyToOne((type) => PetPreference, { cascade: true })
+  @OneToOne((type) => PetPreference, { cascade: true })
   @JoinColumn()
   petPreference: PetPreference;
 }
