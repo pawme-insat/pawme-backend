@@ -1,7 +1,15 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { Field, InputType, Int } from '@nestjs/graphql';
+import { Sexe } from '../../pet/entities/pet.entity';
+import { Breed } from '../../breed/entities/breed.entity';
 
 @InputType()
 export class CreatePetPreferenceInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field((type) => Int)
+  age: number;
+
+  @Field((type) => Sexe)
+  sexe: Sexe;
+
+  @Field((type) => Breed)
+  breed: Breed;
 }
