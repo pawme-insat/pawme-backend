@@ -5,17 +5,17 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-
-import { PetType } from '../../pet-type/entities/pet-type.entity';
 import { User } from '../../user/entities/user.entity';
 import { Breed } from '../../breed/entities/breed.entity';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 import { PetGallery } from '../../pet-gallery/entities/pet-gallery.entity';
-import {IsDate} from "class-validator";
+import { IsDate } from 'class-validator';
+import { PetPreference } from '../../pet-preferences/entities/pet-preference.entity';
 
-enum Sexe {
+export enum Sexe {
   'Masculin' = 'M',
   'Feminin' = 'F',
 }
@@ -66,4 +66,9 @@ export class Pet extends TimeStampEntity {
     nullable: true,
   })
   gallery: PetGallery[];
+
+  @Field()
+  @OneToOne((type) => PetPreference)
+  @JoinColumn()
+  pet_preference: PetPreference;
 }
