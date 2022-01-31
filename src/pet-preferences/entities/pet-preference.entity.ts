@@ -20,6 +20,6 @@ export class PetPreference extends TimeStampEntity {
   sexe: Sexe;
 
   @Field((type) => Breed)
-  @ManyToOne(() => Breed)
+  @ManyToOne(() => Breed, {})
   breed: Breed;
 }

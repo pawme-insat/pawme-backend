@@ -1,15 +1,15 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { Sexe } from '../../pet/entities/pet.entity';
-import { Breed } from '../../breed/entities/breed.entity';
+import { CreateBreedInput } from '../../breed/dto/create-breed.input';
 
 @InputType()
 export class CreatePetPreferenceInput {
-  @Field((type) => Int)
+  @Field((type) => Int, { nullable: true })
   age: number;
 
-  @Field((type) => Sexe)
+  @Field((type) => Sexe, { nullable: true })
   sexe: Sexe;
 
-  @Field((type) => Breed)
-  breed: Breed;
+  @Field({ nullable: true })
+  breed: CreateBreedInput;
 }
