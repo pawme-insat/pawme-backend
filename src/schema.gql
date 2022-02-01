@@ -126,12 +126,12 @@ type Query {
   pet(id: Int!): Pet!
   pet_likes: [LikePet!]!
   pet_like(id: Int!): LikePet!
+  matches: [Match!]!
+  match(id: Int!): Match!
   messages: [Message!]!
   message(id: Int!): Message!
   conversations: [Conversation!]!
   conversation(id: Int!): Conversation!
-  matches: [Match!]!
-  match(id: Int!): Match!
   pet_types: [PetType!]!
   pet_type(id: Int!): PetType!
   breeds: [Breed!]!
@@ -163,15 +163,15 @@ type Mutation {
   createLike(createLikeInput: CreateLikePetInput!): LikePet!
   updateLike(updateLikeInput: UpdateLikePetInput!): LikePet!
   removeLike(id: Int!): LikePet!
+  createMatch(createMatchInput: CreateMatchInput!): Match!
+  updateMatch(updateMatchInput: UpdateMatchInput!): Match!
+  removeMatch(id: Int!): Match!
   createMessage(createMessageInput: CreateMessageInput!): Message!
   updateMessage(updateMessageInput: UpdateMessageInput!): Message!
   removeMessage(id: Int!): String!
   createConversation(createConversationInput: CreateConversationInput!): Conversation!
   updateConversation(updateConversationInput: UpdateConversationInput!): Conversation!
   removeConversation(id: Int!): Conversation!
-  createMatch(createMatchInput: CreateMatchInput!): Match!
-  updateMatch(updateMatchInput: UpdateMatchInput!): Match!
-  removeMatch(id: Int!): Match!
   createType(createTypeInput: CreatePetTypeInput!): PetType!
   updateType(updateTypeInput: UpdatePetTypeInput!): PetType!
   removeType(id: Int!): String!
@@ -225,7 +225,13 @@ input UpdateUserInput {
 
 input CreateReviewInput {
   description: String!
-  pet: CreatePetInput!
+  pet: CreateUserInput!
+}
+
+input UpdateReviewInput {
+  description: String
+  pet: CreateUserInput
+  id: Int!
 }
 
 input CreatePetInput {
@@ -247,12 +253,6 @@ input CreateBreedInput {
   type: Float!
 }
 
-input UpdateReviewInput {
-  description: String
-  pet: CreatePetInput
-  id: Int!
-}
-
 input UpdatePetInput {
   name: String
   birth_date: DateTime
@@ -264,13 +264,28 @@ input UpdatePetInput {
 }
 
 input CreateLikePetInput {
-  pet: CreatePetInput!
-  likedPet: CreatePetInput!
+  pet: Int!
+  likedPet: Int!
 }
 
 input UpdateLikePetInput {
-  pet: CreatePetInput
-  likedPet: CreatePetInput
+  pet: Int
+  likedPet: Int
+  id: Int!
+}
+
+input CreateMatchInput {
+  likePetRight: CreateLikePetInput!
+  likePetLeft: CreateLikePetInput!
+  isSeenRight: Boolean!
+  isSeenLeft: Boolean!
+}
+
+input UpdateMatchInput {
+  likePetRight: CreateLikePetInput
+  likePetLeft: CreateLikePetInput
+  isSeenRight: Boolean
+  isSeenLeft: Boolean
   id: Int!
 }
 
@@ -286,11 +301,6 @@ input CreateConversationInput {
   messages: [CreateMessageInput!]!
 }
 
-input CreateMatchInput {
-  likePetRight: CreateLikePetInput!
-  likePetLeft: CreateLikePetInput!
-}
-
 input UpdateMessageInput {
   receiver: CreatePetInput
   sender: CreatePetInput
@@ -303,14 +313,6 @@ input UpdateConversationInput {
   match: CreateMatchInput
   messages: [CreateMessageInput!]
   id: Int!
-}
-
-input UpdateMatchInput {
-  likePetRight: CreateLikePetInput
-  likePetLeft: CreateLikePetInput
-  id: Int!
-  isSeenRight: Boolean!
-  isSeenLeft: Boolean!
 }
 
 input CreatePetTypeInput {

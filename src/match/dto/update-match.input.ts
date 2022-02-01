@@ -5,10 +5,4 @@ import { Field, InputType, Int, PartialType } from '@nestjs/graphql';
 export class UpdateMatchInput extends PartialType(CreateMatchInput) {
   @Field(() => Int)
   id: number;
-
-  @Field((type) => Boolean)
-  isSeenRight: boolean;
-
-  @Field((type) => Boolean)
-  isSeenLeft: boolean;
 }

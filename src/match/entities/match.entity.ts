@@ -3,7 +3,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
@@ -17,12 +17,12 @@ export class Match extends TimeStampEntity {
   id: number;
 
   @Field((type) => LikePet)
-  @OneToOne(() => LikePet)
+  @ManyToOne(() => LikePet)
   @JoinColumn()
   likePetRight: LikePet;
 
   @Field((type) => LikePet)
-  @OneToOne(() => LikePet)
+  @ManyToOne(() => LikePet)
   @JoinColumn()
   likePetLeft: LikePet;
 

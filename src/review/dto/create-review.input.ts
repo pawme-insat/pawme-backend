@@ -10,6 +10,5 @@ export class CreateReviewInput {
 
   @Field((type) => CreateUserInput)
   @ManyToOne(() => CreateUserInput)
-  @Field((type) => CreatePetInput)
   pet: CreatePetInput;
 }
