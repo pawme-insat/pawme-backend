@@ -1,5 +1,11 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 import { LikePet } from '../../like-pet/entities/like-pet.entity';
 
@@ -19,4 +25,12 @@ export class Match extends TimeStampEntity {
   @OneToOne(() => LikePet)
   @JoinColumn()
   likePetLeft: LikePet;
+
+  @Field((type) => Boolean)
+  @Column()
+  isSeenRight: boolean;
+
+  @Field((type) => Boolean)
+  @Column()
+  isSeenLeft: boolean;
 }
