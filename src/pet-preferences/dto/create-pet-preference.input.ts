@@ -1,6 +1,5 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { Sexe } from '../../pet/entities/pet.entity';
-import { CreateBreedInput } from '../../breed/dto/create-breed.input';
 
 @InputType()
 export class CreatePetPreferenceInput {
@@ -11,5 +10,8 @@ export class CreatePetPreferenceInput {
   sexe: Sexe;
 
   @Field({ nullable: true })
-  breed: CreateBreedInput;
+  breedType: number;
+
+  @Field()
+  pet: number;
 }

@@ -1,7 +1,14 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
-import { Sexe } from '../../pet/entities/pet.entity';
+import { Pet, Sexe } from '../../pet/entities/pet.entity';
 import { Breed } from '../../breed/entities/breed.entity';
 
 @ObjectType()
@@ -20,6 +27,11 @@ export class PetPreference extends TimeStampEntity {
   sexe: Sexe;
 
   @Field((type) => Breed)
-  @ManyToOne(() => Breed, {})
-  breed: Breed;
+  @ManyToOne(() => Breed, { eager: true, nullable: true })
+  breedType: Breed;
+
+  @Field((type) => Pet)
+  @OneToOne((type) => Pet, { eager: true, cascade: true })
+  @JoinColumn()
+  pet: Pet;
 }
