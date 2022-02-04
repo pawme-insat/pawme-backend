@@ -24,6 +24,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { UploadModule } from './generics/upload/upload.module';
 import { PetGalleryModule } from './pet-gallery/pet-gallery.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { PetPreferencesModule } from './pet-preferences/pet-preferences.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     MulterModule.register({}),
     UploadModule,
     PetGalleryModule,
+    PetPreferencesModule,
   ],
   controllers: [AppController, UploadsController],
   providers: [AppService],
