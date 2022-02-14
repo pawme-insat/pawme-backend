@@ -3,15 +3,36 @@ import { PetService } from './pet.service';
 import { Pet } from './entities/pet.entity';
 import { CreatePetInput } from './dto/create-pet.input';
 import { UpdatePetInput } from './dto/update-pet.input';
+import { PetTypeService } from '../pet-type/pet-type.service';
+import { BreedService } from '../breed/breed.service';
+import { CreateBreedInput } from '../breed/dto/create-breed.input';
 
 @Resolver(() => Pet)
 export class PetResolver {
-  constructor(private readonly petService: PetService) {}
+  constructor(
+    private readonly petService: PetService,
+    private readonly petTypeService: PetTypeService,
+    private readonly breedService: BreedService,
+    private creatBreedDto: CreateBreedInput,
+  ) {}
 
   @Mutation(() => Pet)
-  createPet(@Args('createPetInput') createPetInput: CreatePetInput) {
-    console.log(createPetInput);
-    // TODO replace with proper breedType logic , get name from property and use typeorm find one to check it exists else create it
+  async createPet(
+    @Args('createPetInput') createPetInput: CreatePetInput,
+    /*@Args('breed') breed: string,
+    @Args('petType') petType: number,*/
+  ) {
+    /*let checkedBreed = await this.breedService.findOneByName(breed);
+    if (checkedBreed == null) {
+      console.log('breed doesnt exist');
+      this.creatBreedDto.name = breed;
+      this.creatBreedDto.type = petType;
+      checkedBreed = await this.breedService.create(this.creatBreedDto);
+      //create breed
+    }
+    // Add breeddto to createPetInput
+    createPetInput.breedType = checkedBreed.id;
+    console.log(createPetInput);*/
     return this.petService.create(createPetInput);
   }
 

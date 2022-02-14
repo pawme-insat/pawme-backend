@@ -7,5 +7,6 @@ import { PetType } from './entities/pet-type.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([PetType])],
   providers: [PetTypeResolver, PetTypeService],
+  exports: [PetTypeService, PetTypeResolver],
 })
 export class PetTypeModule {}

@@ -12,4 +12,9 @@ export class BreedService extends GenericService<Breed> {
   ) {
     super(myRepository, { useSoftDelete: true });
   }
+  public async findOneByName(name: string): Promise<Breed> {
+    const a = await this.myRepository.findOne(name);
+    console.log(a);
+    return a;
+  }
 }

@@ -122,6 +122,10 @@ type Query {
   review(id: Int!): Review!
   pets: [Pet!]!
   pet(id: Int!): Pet!
+  pet_types: [PetType!]!
+  pet_type(id: Int!): PetType!
+  breeds: [Breed!]!
+  breed(id: Int!): Breed!
   pet_likes: [LikePet!]!
   pet_like(id: Int!): LikePet!
   messages: [Message!]!
@@ -130,10 +134,6 @@ type Query {
   conversation(id: Int!): Conversation!
   matches: [Match!]!
   match(id: Int!): Match!
-  pet_types: [PetType!]!
-  pet_type(id: Int!): PetType!
-  breeds: [Breed!]!
-  breed(id: Int!): Breed!
   breed_Characteristics: [BreedCharacteristic!]!
   breed_Characteristic(id: Int!): BreedCharacteristic!
   login(credentials: SignInDto!): SignInResponseDto!
@@ -158,6 +158,12 @@ type Mutation {
   createPet(createPetInput: CreatePetInput!): Pet!
   updatePet(updatePetInput: UpdatePetInput!): Pet!
   removePet(id: Int!): String!
+  createType(createTypeInput: CreatePetTypeInput!): PetType!
+  updateType(updateTypeInput: UpdatePetTypeInput!): PetType!
+  removeType(id: Int!): String!
+  createBreed(createBreedInput: CreateBreedInput!): Breed!
+  updateBreed(updateBreedInput: UpdateBreedInput!): Breed!
+  removeBreed(id: Int!): Breed!
   createLike(createLikeInput: CreateLikePetInput!): LikePet!
   updateLike(updateLikeInput: UpdateLikePetInput!): LikePet!
   removeLike(id: Int!): LikePet!
@@ -170,12 +176,6 @@ type Mutation {
   createMatch(createMatchInput: CreateMatchInput!): Match!
   updateMatch(updateMatchInput: UpdateMatchInput!): Match!
   removeMatch(id: Int!): Match!
-  createType(createTypeInput: CreatePetTypeInput!): PetType!
-  updateType(updateTypeInput: UpdatePetTypeInput!): PetType!
-  removeType(id: Int!): String!
-  createBreed(createBreedInput: CreateBreedInput!): Breed!
-  updateBreed(updateBreedInput: UpdateBreedInput!): Breed!
-  removeBreed(id: Int!): Breed!
   createBreedCharacteristic(createBreedCharacteristicInput: CreateBreedCharacteristicInput!): BreedCharacteristic!
   updateBreedCharacteristic(updateBreedCharacteristicInput: UpdateBreedCharacteristicInput!): BreedCharacteristic!
   removeBreedCharacteristic(id: Int!): String!
@@ -232,17 +232,12 @@ input CreatePetInput {
   sexe: SexeEnum!
   aboutMe: String!
   user: Float!
-  breedType: CreateBreedInput!
+  breedType: Float!
 }
 
 enum SexeEnum {
   Masculin
   Feminin
-}
-
-input CreateBreedInput {
-  name: String!
-  type: Float!
 }
 
 input UpdateReviewInput {
@@ -257,7 +252,27 @@ input UpdatePetInput {
   sexe: SexeEnum
   aboutMe: String
   user: Float
-  breedType: CreateBreedInput
+  breedType: Float
+  id: Int!
+}
+
+input CreatePetTypeInput {
+  name: String!
+}
+
+input UpdatePetTypeInput {
+  name: String
+  id: Int!
+}
+
+input CreateBreedInput {
+  name: String!
+  type: Float!
+}
+
+input UpdateBreedInput {
+  name: String
+  type: Float
   id: Int!
 }
 
@@ -306,21 +321,6 @@ input UpdateConversationInput {
 input UpdateMatchInput {
   likePetRight: CreateLikePetInput
   likePetLeft: CreateLikePetInput
-  id: Int!
-}
-
-input CreatePetTypeInput {
-  name: String!
-}
-
-input UpdatePetTypeInput {
-  name: String
-  id: Int!
-}
-
-input UpdateBreedInput {
-  name: String
-  type: Float
   id: Int!
 }
 

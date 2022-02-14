@@ -30,5 +30,5 @@ export class CreatePetInput {
   user: number;
 
   @Field()
-  breedType: CreateBreedInput;
+  breedType: number;
 }

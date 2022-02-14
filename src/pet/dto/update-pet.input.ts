@@ -5,7 +5,4 @@ import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 export class UpdatePetInput extends PartialType(CreatePetInput) {
   @Field(() => Int)
   id: number;
-
-  //@Field()
-  //gallery: string[];
 }
