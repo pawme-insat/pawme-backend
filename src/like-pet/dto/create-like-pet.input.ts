@@ -1,11 +1,10 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { CreatePetInput } from '../../pet/dto/create-pet.input';
+import { Field, InputType, Int } from '@nestjs/graphql';
 
 @InputType()
 export class CreateLikePetInput {
-  @Field((type) => CreatePetInput)
-  pet: CreatePetInput;
+  @Field((type) => Int)
+  pet: number;
 
-  @Field((type) => CreatePetInput)
-  likedPet: CreatePetInput;
+  @Field((type) => Int)
+  likedPet: number;
 }
