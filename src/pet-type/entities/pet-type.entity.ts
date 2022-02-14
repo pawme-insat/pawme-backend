@@ -1,7 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Breed } from '../../breed/entities/breed.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Pet } from '../../pet/entities/pet.entity';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 
 @ObjectType()
@@ -16,7 +15,7 @@ export class PetType extends TimeStampEntity {
   name: string;
 
   @Field((type) => [Breed])
-  @OneToMany(() => Breed, (Breed) => Breed.type, {
+  @OneToMany(() => Breed, (Breed) => Breed.petType, {
     onDelete: 'CASCADE',
     cascade: true,
     nullable: true,
