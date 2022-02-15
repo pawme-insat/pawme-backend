@@ -67,8 +67,12 @@ export class Pet extends TimeStampEntity {
   })
   gallery: PetGallery[];
 
-  @Field((type) => PetPreference)
-  @OneToOne((type) => PetPreference, { eager: true, cascade: true })
+  @Field((type) => PetPreference, { nullable: true })
+  @OneToOne((type) => PetPreference, {
+    eager: true,
+    cascade: true,
+    nullable: true,
+  })
   @JoinColumn()
   petPreference: PetPreference;
 }

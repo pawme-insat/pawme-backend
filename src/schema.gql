@@ -57,8 +57,8 @@ type Pet {
   breedType: Breed!
   user: User!
   pdp: String!
-  gallery: [PetGallery!]!
-  petPreference: PetPreference!
+  gallery: [PetGallery!]
+  petPreference: PetPreference
 }
 
 """
@@ -76,7 +76,7 @@ type User {
   bio: String
   birth_date: DateTime!
   address: Address!
-  pets: [Pet!]!
+  pets: [Pet!]
   image: String
 }
 
@@ -254,13 +254,18 @@ input CreatePetInput {
   sexe: SexeEnum!
   aboutMe: String!
   user: Float!
-  breedType: Float!
-  petPreference: Float!
+  breedType: CreateBreedInput!
+  petPreference: Float
 }
 
 enum SexeEnum {
   Masculin
   Feminin
+}
+
+input CreateBreedInput {
+  name: String!
+  peType: Float!
 }
 
 input UpdatePetInput {
@@ -269,7 +274,7 @@ input UpdatePetInput {
   sexe: SexeEnum
   aboutMe: String
   user: Float
-  breedType: Float
+  breedType: CreateBreedInput
   petPreference: Float
   id: Int!
 }
@@ -281,11 +286,6 @@ input CreatePetTypeInput {
 input UpdatePetTypeInput {
   name: String
   id: Int!
-}
-
-input CreateBreedInput {
-  name: String!
-  peType: Float!
 }
 
 input UpdateBreedInput {

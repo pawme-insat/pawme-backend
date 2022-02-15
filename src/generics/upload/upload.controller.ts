@@ -1,9 +1,9 @@
 import {
   BadRequestException,
-  Body,
   Controller,
   ImATeapotException,
   Post,
+  Query,
   UploadedFile,
   UploadedFiles,
   UseInterceptors,
@@ -43,9 +43,11 @@ export class UploadController {
     }),
   )
   @Post('user')
-  async uploadFile(@UploadedFile() file: Express.Multer.File, @Body() body) {
-    console.log(body.id);
-    const user = await this.userService.findOne(body.id);
+  async uploadFile(
+    @UploadedFile() file: Express.Multer.File,
+    @Query('id') id: string,
+  ) {
+    const user = await this.userService.findOne(Number(id));
     if (user == null) {
       return BadRequestException;
     } else {
@@ -54,7 +56,7 @@ export class UploadController {
       }
       user.image = file.filename;
       console.log(file.path);
-      return await this.userService.update(body.id, user);
+      return await this.userService.update(Number(id), user);
     }
   }
 
@@ -74,9 +76,12 @@ export class UploadController {
     }),
   )
   @Post('pet/pdp')
-  async uploadPetPDP(@UploadedFile() file: Express.Multer.File, @Body() body) {
+  async uploadPetPDP(
+    @UploadedFile() file: Express.Multer.File,
+    @Query('id') id: string,
+  ) {
     console.log(file);
-    const pet = await this.petService.findOne(body.id);
+    const pet = await this.petService.findOne(Number(id));
     if (pet == null) {
       return ImATeapotException;
     }
@@ -86,7 +91,7 @@ export class UploadController {
     }
     // Add pdp to pet
     pet.pdp = file.filename;
-    await this.petService.update(body.id, pet);
+    await this.petService.update(Number(id), pet);
     console.log(pet);
     return pet;
   }
@@ -108,17 +113,17 @@ export class UploadController {
   @Post('pet/gallery')
   async uploadGallery(
     @UploadedFiles() files: Array<Express.Multer.File>,
-    @Body() body,
+    @Query('id') id: string,
   ) {
     console.log(files);
-    const pet = await this.petService.findOne(body.id);
+    const pet = await this.petService.findOne(Number(id));
     if (pet == null) {
       return ImATeapotException;
     }
     // Add gallery
     for (let i = 1; i < files.length; i++) {
       this.createPetGalleryDto.filename = files[i].filename;
-      this.createPetGalleryDto.pet = body.id;
+      this.createPetGalleryDto.pet = Number(id);
       await this.petGalleryService.create(this.createPetGalleryDto);
     }
 

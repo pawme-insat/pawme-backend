@@ -41,7 +41,7 @@ import { PetPreferencesModule } from './pet-preferences/pet-preferences.module';
       synchronize: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '../uploads'),
+      rootPath: process.env.FILE_DIR,
     }),
     AddressModule,
     UserModule,
