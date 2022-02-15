@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Pet } from '../../pet/entities/pet.entity';
 import { TimeStampEntity } from '../../generics/db/timestamp.entity';
 
@@ -11,12 +11,12 @@ export class LikePet extends TimeStampEntity {
   id: number;
 
   @Field((type) => Pet)
-  @OneToOne(() => Pet)
+  @ManyToOne(() => Pet, { eager: true })
   @JoinColumn()
   pet: Pet;
 
   @Field((type) => Pet)
-  @OneToOne(() => Pet)
+  @ManyToOne(() => Pet, { eager: true })
   @JoinColumn()
   likedPet: Pet;
 }

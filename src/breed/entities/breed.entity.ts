@@ -29,5 +29,5 @@ export class Breed extends TimeStampEntity {
 
   @Field((type) => PetType)
   @ManyToOne(() => PetType, (e) => e.breeds, { eager: true })
-  type: PetType;
+  petType: PetType;
 }

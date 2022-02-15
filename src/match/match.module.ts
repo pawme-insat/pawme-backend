@@ -7,5 +7,6 @@ import { Match } from './entities/match.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Match])],
   providers: [MatchResolver, MatchService],
+  exports: [MatchService],
 })
 export class MatchModule {}

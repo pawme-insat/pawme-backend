@@ -9,6 +9,6 @@ import { BreedModule } from '../breed/breed.module';
 @Module({
   imports: [TypeOrmModule.forFeature([Pet]), PetTypeModule, BreedModule],
   providers: [PetResolver, PetService],
-  exports: [PetService],
+  exports: [PetModule, PetService],
 })
 export class PetModule {}

@@ -1,6 +1,5 @@
-import { Field, InputType, Int, registerEnumType } from '@nestjs/graphql';
+import { Field, InputType, registerEnumType } from '@nestjs/graphql';
 import { IsDate, IsNotEmpty } from 'class-validator';
-import { CreateBreedInput } from 'src/breed/dto/create-breed.input';
 
 enum Sexe {
   'Masculin' = 'M',
@@ -31,4 +30,7 @@ export class CreatePetInput {
 
   @Field()
   breedType: number;
+
+  @Field()
+  petPreference: number;
 }
