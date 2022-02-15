@@ -6,5 +6,5 @@ export class CreateBreedInput {
   name: string;
 
   @Field()
-  peType: number;
+  petType: number;
 }

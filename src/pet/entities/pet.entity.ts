@@ -56,7 +56,7 @@ export class Pet extends TimeStampEntity {
   @ManyToOne(() => User, (User) => User.pets, {})
   user: User;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ nullable: true })
   pdp: string;
 

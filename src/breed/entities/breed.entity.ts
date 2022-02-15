@@ -22,12 +22,12 @@ export class Breed extends TimeStampEntity {
   @Column()
   name: string;
 
-  @Field((type) => [BreedCharacteristic])
+  @Field((type) => [BreedCharacteristic], { nullable: true })
   @ManyToMany(() => BreedCharacteristic)
   @JoinTable()
   breed_characteristics: BreedCharacteristic[];
 
-  @Field((type) => PetType)
+  @Field((type) => PetType, { nullable: true })
   @ManyToOne(() => PetType, (e) => e.breeds, { eager: true })
   petType: PetType;
 }

@@ -25,8 +25,8 @@ type PetType {
 type Breed {
   id: Int!
   name: String!
-  breed_characteristics: [BreedCharacteristic!]!
-  petType: PetType!
+  breed_characteristics: [BreedCharacteristic!]
+  petType: PetType
 }
 
 type PetGallery {
@@ -56,7 +56,7 @@ type Pet {
   aboutMe: String!
   breedType: Breed!
   user: User!
-  pdp: String!
+  pdp: String
   gallery: [PetGallery!]
   petPreference: PetPreference
 }
@@ -265,7 +265,7 @@ enum SexeEnum {
 
 input CreateBreedInput {
   name: String!
-  peType: Float!
+  petType: Float!
 }
 
 input UpdatePetInput {
@@ -290,7 +290,7 @@ input UpdatePetTypeInput {
 
 input UpdateBreedInput {
   name: String
-  peType: Float
+  petType: Float
   id: Int!
 }
 
