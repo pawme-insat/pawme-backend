@@ -31,7 +31,6 @@ export class PetPreference extends TimeStampEntity {
   breedType: Breed;
 
   @Field((type) => Pet)
-  @OneToOne((type) => Pet, { eager: true, cascade: true })
-  @JoinColumn()
+  @OneToOne((type) => Pet)
   pet: Pet;
 }

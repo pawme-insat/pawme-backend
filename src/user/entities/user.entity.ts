@@ -52,7 +52,7 @@ export class User extends TimeStampEntity {
   @ManyToOne(() => Address, { cascade: true, eager: true })
   address: Address;
 
-  @Field((type) => [Pet])
+  @Field((type) => [Pet], { nullable: true })
   @OneToMany(() => Pet, (Pet) => Pet.user, {
     cascade: true,
     eager: true,

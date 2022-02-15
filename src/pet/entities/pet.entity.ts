@@ -60,7 +60,7 @@ export class Pet extends TimeStampEntity {
   @Column({ nullable: true })
   pdp: string;
 
-  @Field(() => [PetGallery])
+  @Field(() => [PetGallery], { nullable: true })
   @OneToMany(() => PetGallery, (Gallery) => Gallery.pet, {
     eager: true,
     nullable: true,
